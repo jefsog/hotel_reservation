@@ -64,7 +64,16 @@ td {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9pt
           </td>
           <td colspan="2">&nbsp;</td>
         </tr>
-        <form action="instructor_change_passwd.php" method="get">
+        <form action="Register" method="get">
+        <tr> 
+          <td colspan="3"> 
+              <div align="left"> 
+                <blockquote>User     Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <input type="text" name="user_name" value="<%=request.getParameter("user_name")%>">
+                </blockquote>
+              </div>
+          </td>
+        </tr>
         <tr> 
           <td colspan="3"> 
               <div align="left"> 
@@ -86,12 +95,14 @@ td {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9pt
         <tr> 
           <td colspan="3"> 
               <div align="center"> 
-                <input type="submit" name="submit" value="Change Password">
+                <input type="submit" name="submit" value="Register">
+                <% if(request.getAttribute("error")!=null) out.print(request.getAttribute("error"));%>
               </div>
           </td>
         </tr>
 		
       </table>
+          
 	      </td>
   </tr>
   <tr> 
@@ -111,6 +122,7 @@ td {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9pt
   <tr> </tr>
   <tr> </tr>
 </table>
+                    
 </body>
 </html>
 

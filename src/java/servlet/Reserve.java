@@ -8,6 +8,7 @@ package servlet;
 import databaseJeff.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jeff_2
  */
-public class Login extends HttpServlet {
+public class Reserve extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +33,32 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd;
-        String usnm = request.getParameter("user_name");
-        String psw = request.getParameter("password");
-        int cID = -1;
+        HttpSession session = request.getSession();
+        int uID = (int) session.getAttribute("cID");
+        String starting = request.getParameter("txtArrivalDate");
+        String ending = request.getParameter("txtDepartureDate");
+        String rType = request.getParameter("Bed");
+        int rQuantity = Integer.parseInt(request.getParameter("ddlNoOfPeople"));
+        String spRequest = request.getParameter("txtSpecialRequests");
+        int i = -1;
+        int roomAvailability = -1;
         try{
             Database db = Database.getDatabase();
-            cID = db.getUserID(usnm, psw);
+            roomAvailability = db.getAvailableRoomQuantity(starting, ending, rType);
+            if(rQuantity <= roomAvailability){
+                i = db.insertReservation(uID, starting, ending, rType, rQuantity, spRequest);
+                
+            }else{
+                //return error information;
+            }
+            if(i == 1){
+            RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
+            rd.forward(request,response);
+            }else{
+                //return error information
+            }
         }catch(Exception e){
             
-        }
-        if(cID == -1){
-            rd = request.getRequestDispatcher("userRegister.jsp");
-            rd.forward(request,response);
-        }else{
-            HttpSession session = request.getSession(); 
-            session.setAttribute("cID", cID);
-            rd = request.getRequestDispatcher("userReserve.jsp");
-            rd.forward(request,response);
         }
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -57,18 +66,19 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
+            out.println("<title>Servlet Reserve</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println(psw);
-            out.println(usnm);
-            out.println(cID);
+            out.println(uID);
+            out.println(starting);
+            out.println(ending);
+            out.println(rType);
+            out.println(rQuantity);
+            out.println(spRequest);
+            out.println(roomAvailability);
             out.println("</body>");
             out.println("</html>");
         }
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

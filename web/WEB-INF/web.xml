@@ -4,9 +4,25 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>servlet.Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reserve</servlet-name>
+        <servlet-class>servlet.Reserve</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reserve</servlet-name>
+        <url-pattern>/Reserve</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
