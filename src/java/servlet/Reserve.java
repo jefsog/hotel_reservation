@@ -50,6 +50,10 @@ public class Reserve extends HttpServlet {
                 
             }else{
                 //return error information;
+                String error = "From "+starting+ " to "+ending+" , only "+roomAvailability+" "+ rType+"  rooms left.";
+                request.setAttribute("error", error);
+                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+                rd.forward(request,response);
             }
             if(i == 1){
             RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
@@ -76,6 +80,7 @@ public class Reserve extends HttpServlet {
             out.println(rQuantity);
             out.println(spRequest);
             out.println(roomAvailability);
+            out.println(i);
             out.println("</body>");
             out.println("</html>");
         }

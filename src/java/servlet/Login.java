@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
         }else{
             HttpSession session = request.getSession(); 
             session.setAttribute("cID", cID);
-            rd = request.getRequestDispatcher("userReserve.jsp");
+            rd = request.getRequestDispatcher("userViewR.jsp");
             rd.forward(request,response);
         }
         response.setContentType("text/html;charset=UTF-8");

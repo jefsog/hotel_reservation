@@ -60,6 +60,10 @@
             </textarea><br />
             
             <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="button" />
+            <%            
+            if(request.getAttribute("error") != null) 
+                out.print(request.getAttribute("error")); 
+            %>
         </form>
         </body>
 </html>

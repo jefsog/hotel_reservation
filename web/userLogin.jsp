@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% session.invalidate(); //invalidate all the sessions %>
 <!DOCTYPE html>
 <HTML>
 <HEAD>

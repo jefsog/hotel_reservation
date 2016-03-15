@@ -69,7 +69,13 @@ td {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9pt
           <td colspan="3"> 
               <div align="left"> 
                 <blockquote>User     Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    <input type="text" name="user_name" value="<%=request.getParameter("user_name")%>">
+                    <%
+                        String user_name = "";
+                        if(request.getParameter("user_name") != null) 
+                            user_name=request.getParameter("user_name");
+                        
+                        %>
+                    <input type="text" name="user_name" value="<%=user_name%>">
                 </blockquote>
               </div>
           </td>

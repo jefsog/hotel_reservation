@@ -12,6 +12,18 @@
         <servlet-name>Reserve</servlet-name>
         <servlet-class>servlet.Reserve</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Change</servlet-name>
+        <servlet-class>servlet.Change</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update</servlet-name>
+        <servlet-class>servlet.Update</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPSW</servlet-name>
+        <servlet-class>servlet.ResetPSW</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>Reserve</servlet-name>
         <url-pattern>/Reserve</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Change</servlet-name>
+        <url-pattern>/Change</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/Update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPSW</servlet-name>
+        <url-pattern>/ResetPSW</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

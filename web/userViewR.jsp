@@ -4,6 +4,10 @@
     Author     : Jeff_2
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="logicJeff.ReservationJeff"%>
+<%@page import="databaseJeff.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <HTML>
@@ -90,74 +94,122 @@ table, th, td{
       <TABLE align=right border=0 cellPadding=4 cellSpacing=4 height=270 width=141>
         <TR bgColor=#29a8cd>
           <TD>
-            <DIV align=center><B><a href="instructor_exam_schedule.php"><FONT color=#ffffff size=2>My Schedule</FONT></A></B></DIV>
+            <DIV align=center><B><a href="userViewR.jsp"><FONT color=#ffffff size=2>My Reservation</FONT></A></B></DIV>
 		  </TD>
 		</TR>
         <TR bgColor=#35a8a5>
           <TD>
-            <DIV align=center><b><a href="instructor_set_schedule.php"><font color="#ffffff" size="2">Set Course Schedule</font></a></b></DIV>
+            <DIV align=center><b><a href="userReserve.jsp"><font color="#ffffff" size="2">New Reservation</font></a></b></DIV>
 		  </TD>
 		</TR>
         <TR bgColor=#37a67c>
           <TD>
-            <DIV align=center><b><a href="instructor_change_passwd.php"><font color="#ffffff" size="2">Change Password</font></a></b></DIV>
+            <DIV align=center><b><a href="userResetPSW.jsp"><font color="#ffffff" size="2">Change Password</font></a></b></DIV>
 		  </TD>
 		</TR>
         <TR bgColor=#339966>
           <TD>
-			<DIV align=center><p><b><a href="logout.php"><font color="#ffffff" size="2">LOG OUT</font></a></b></p></DIV>
+			<DIV align=center><p><b><a href="userLogin.jsp"><font color="#ffffff" size="2">LOG OUT</font></a></b></p></DIV>
 		  </TD>
         </TR>
       </TABLE>
+        
+        
       <P align=right>&nbsp;</P>
 	</TD>
     <td width="997" valign="top">
 		<p><div id="main_container">
-				<div id="header">
-					<h1>Current Schedule</h1>
-				</div>
+				
 			<div id="content">
-				<h2>To Schedule</h2>
+                            
+<!--Reservation -->
+<%
+    session = request.getSession();
+    int cID = (Integer)session.getAttribute("cID"); //convert to int doesn't work here.
+    //int cID = 8999;
+    ArrayList<ReservationJeff> reservations = new ArrayList<ReservationJeff>();
+    try{
+        Database db = Database.getDatabase();
+        reservations = db.getReservation(cID);
+    }catch(Exception e){
+    
+    }
+    session.setAttribute("reservations", reservations);
+    %>
+				<h2>Reservations</h2>
+                                <form method="get" action="Change">
 				<table border="1">
 				<tr>
-					<th class="tableHeaders">Course_Section_ID</th>
-					<th class="tableHeaders">Course_Name</th>
-					<th class="tableHeaders">Faculty_Name</th>
+                                    <th class="tableHeaders"></th>
+                                    <th class="tableHeaders">Reservation ID</th>
+                                    <th class="tableHeaders">User ID</th>
+                                    <th class="tableHeaders">Starting</th>
+                                    <th class="tableHeaders">Ending</th>
+                                    <th class="tableHeaders">Room Type</th>
+                                    <th class="tableHeaders">Quantity</th>
+                                    <th class="tableHeaders">Special Request</th>
 			</tr>
-					</tr>
+                        <%
+    Date today = new Date();
+for(ReservationJeff res: reservations){
+    if(today.before(res.starting)){
+                                %>
+                        <tr>
+                            
+                            <td><input type="radio" name="reservation" value="<%=res.rID%>"></td>
+                                <td><%=res.rID %></td>
+                                <td><%=res.uID %></td>
+                                <td><%=res.starting %></td>
+                                <td><%=res.ending %></td>
+                                <td><%=res.rType %></td>
+                                <td><%=res.rQuantity %></td>
+                                <td><%=res.spRequest %></td>
+                                
+                                </tr>
+                                <%
+    }
+                            }
+%>                            
 		</table>
-		<h2>Already Scheduled</h2>	
+                <input type="submit" name="submit" value="change"/>
+                <input type="submit" name="submit" value="delete"/>
+                                </FORM>              
+                                
+<!--History -->                               
+		<h2>History</h2>	
 		<table border="1">
-				<tr>
-					<th class="tableHeaders">Course Section_ID</th>
-					<th class="tableHeaders">Course Name</th>
-					<th class="tableHeaders">Faculty Name</th>
-					<th class="tableHeaders">Date</th>
-					<th class="tableHeaders">Time Period</th>
-					<th class="tableHeaders">Class Room</th>
-				</tr>
-		<tr>
-				<td>2111</td>
-				<td>English</td>
-				<td>jeff</td>
-				<td>Mon</td>
-				<td>08-10</td>
-				<td>E417</td>
-				</tr><tr>
-				<td>2222</td>
-				<td>Philosophy</td>
-				<td>jeff</td>
-				<td>Mon</td>
-				<td>08-10</td>
-				<td>J129</td>
-				</tr><tr>
-				<td>2666</td>
-				<td>Maths</td>
-				<td>jeff</td>
-				<td>Mon</td>
-				<td>08-10</td>
-				<td>J132</td>
-				</tr>				</table>		
+			<tr>
+                                    
+                                    <th class="tableHeaders">Reservation ID</th>
+                                    <th class="tableHeaders">User ID</th>
+                                    <th class="tableHeaders">Starting</th>
+                                    <th class="tableHeaders">Ending</th>
+                                    <th class="tableHeaders">Room Type</th>
+                                    <th class="tableHeaders">Quantity</th>
+                                    <th class="tableHeaders">Special Request</th>
+			</tr>	
+			<%
+    
+for(ReservationJeff res: reservations){
+    if(today.after(res.starting)){
+                                %>
+                        <tr>
+                            
+                            
+                                <td><%=res.rID %></td>
+                                <td><%=res.uID %></td>
+                                <td><%=res.starting %></td>
+                                <td><%=res.ending %></td>
+                                <td><%=res.rType %></td>
+                                <td><%=res.rQuantity %></td>
+                                <td><%=res.spRequest %></td>
+                                
+                                </tr>
+                                <%
+    }
+                            }
+%>                            
+                </table>		
 	</div>
 </div>
 </p>

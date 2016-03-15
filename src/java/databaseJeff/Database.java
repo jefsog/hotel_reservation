@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import logicJeff.ReservationJeff;
 
 import logicJeff.RoomJeff;
 import oracle.jdbc.pool.OracleDataSource;
@@ -271,6 +273,90 @@ public class Database {
             i = -1;
         }
         return i;  //if succeed, return 1, else return -1;
+    }
+    
+    public ArrayList<ReservationJeff> getReservation(int cID) throws SQLException{
+        ArrayList<ReservationJeff> reservations = new ArrayList<ReservationJeff>();
+        String sql = "select * from hreservation where cID = ? order by rsid";
+        PreparedStatement ps;
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, cID);
+        ResultSet rs = ps.executeQuery();
+        
+        
+        while(rs.next()){
+            ReservationJeff res = new ReservationJeff(); //has to be created a new one here, otherwise, there is only one object.
+            res.rID = rs.getInt(1);
+            res.uID = rs.getInt(2);
+            res.starting =rs.getDate(3);
+            res.ending = rs.getDate(4);
+            res.rType = rs.getString(5);
+            res.rQuantity = rs.getInt(6);
+            res.spRequest = rs.getString(7);
+            reservations.add(res);
+        }
+        
+        return reservations;
+    }
+    
+    public int updateReservation(int rID, String starting, String ending,
+            String rType, int rQuantity, String spRequest){
+        String sql = "update hreservation set starting=?, ending=?, tname=?, quantity=?, comments=?"
+                + "where rsid=?";
+        int i = 0;
+        try{
+            PreparedStatement pstmt;
+            //ResultSet rs;
+            pstmt = con.prepareStatement(sql);
+            
+
+           
+            pstmt.setDate(1, java.sql.Date.valueOf(starting)); 
+            pstmt.setDate(2, java.sql.Date.valueOf(ending));
+            pstmt.setString(3, rType);
+            pstmt.setInt(4, rQuantity);
+            if(spRequest.equals(""))
+                spRequest = null;
+            pstmt.setString(5, spRequest);
+            pstmt.setInt(6, rID);
+            i = pstmt.executeUpdate();
+        }catch(Exception e){
+            i = -1;
+        }
+        return i;  //if succeed, return 1, else return -1;
+    }
+    
+    public int deleteReservation(int rID){
+        String sql = "delete from hreservation where rsid=?";
+        int i = 0;
+        try{
+            PreparedStatement pstmt;
+            //ResultSet rs;
+            pstmt = con.prepareStatement(sql);
+                    
+            
+            pstmt.setInt(1, rID);
+            i = pstmt.executeUpdate();
+        }catch(Exception e){
+            i = -1;
+        }
+        return i;  //if succeed, return 1, else return -1;
+    }
+    
+    
+    public int resetPSW(int cID, String psw){
+        String sql = "update hcustomer set psw=? where cID=?";
+        int i = 0;
+        try{
+            PreparedStatement ps;
+            ps = con.prepareStatement(sql);
+            ps.setString(1, psw);
+            ps.setInt(2, cID);
+            i = ps.executeUpdate();
+        }catch(Exception e){
+            i = -1;
+        }
+        return i;
     }
     
 }
