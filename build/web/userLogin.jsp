@@ -71,6 +71,7 @@ td {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9pt
           <td colspan="3"> 
               <div align="center"> 
                 <blockquote> username: 
+                    <a href="userRegister.jsp"></a>
                   <input type="text" name="user_name">
                 </blockquote>
               </div>
