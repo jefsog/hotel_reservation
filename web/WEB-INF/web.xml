@@ -24,6 +24,10 @@
         <servlet-name>ResetPSW</servlet-name>
         <servlet-class>servlet.ResetPSW</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddRoom</servlet-name>
+        <servlet-class>_controller.AddRoom</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ResetPSW</servlet-name>
         <url-pattern>/ResetPSW</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRoom</servlet-name>
+        <url-pattern>/AddRoom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
