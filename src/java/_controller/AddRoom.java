@@ -41,7 +41,7 @@ public class AddRoom extends HttpServlet {
         Room r = new Room();
 
         try {
-            String rmType = db.searchRoom(request.getParameter("radRoom"));
+            String rmType = db.searchRoomName(request.getParameter("radRoom"));
             int rmNum = Integer.parseInt(request.getParameter("txtRoomNum").trim());
             String smoke = request.getParameter("radSmoke");
             String specs = request.getParameter("txtSpecs");
@@ -58,6 +58,9 @@ public class AddRoom extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+        rd.forward(request, response);
 
     }
 

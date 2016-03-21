@@ -29,7 +29,7 @@
                             String nm = rt.getRoomName();
                         
                     %>
-                    <input type="radio" name="radRoom" value="<%= nm%>" checked ><%= nm%><br/>      
+                    <input type="radio" name="radRoom" value="<%= nm%>" checked><%= nm%><br/>      
                 <%}%>
                 </div>
 
@@ -39,7 +39,7 @@
                 </div>
                 <div id="specs">
                     <label>Specifications:</label>
-                    <input type="radio" name="radSmoke" value="Non-Smoking" checked>Non-smoking<br/>
+                    <input type="radio" name="radSmoke" value="Non-smoking" checked>Non-smoking<br/>
                     <input type="radio" name="radSmoke" value="Smoking"  >Smoking<br/>
                     <textarea name="txtSpecs" rows="2" cols="20"></textarea>
                 </div>

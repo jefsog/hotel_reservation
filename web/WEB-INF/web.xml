@@ -28,6 +28,10 @@
         <servlet-name>AddRoom</servlet-name>
         <servlet-class>_controller.AddRoom</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewRooms</servlet-name>
+        <servlet-class>_controller.ViewRooms</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>AddRoom</servlet-name>
         <url-pattern>/AddRoom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRooms</servlet-name>
+        <url-pattern>/ViewRooms</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

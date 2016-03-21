@@ -9,8 +9,10 @@
         </group>
         <group name="Distributed Computing">
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_model/Room.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminEditRoom.jsp</file>
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/Room_DB.java</file>
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminAddRoom.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/userViewR.jsp</file>
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/AddRoom.java</file>
         </group>
     </open-files>
