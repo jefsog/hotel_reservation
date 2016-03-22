@@ -5,6 +5,7 @@
  */
 package logicJeff;
 
+import _model.Room;
 import java.util.Date;
 
 /**
@@ -17,6 +18,5 @@ public class ReservationJeff {
     public String rType;
     public int rQuantity;
     public String spRequest;
-    
-    
+    public Room room = new Room();    
 }

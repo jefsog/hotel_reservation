@@ -14,18 +14,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import logicJeff.ReservationJeff;
 
 /**
  *
  * @author Trisha
  */
-public class Room_DB {
+public class _DB {
 
     private Connection con = null;
     private PreparedStatement pstmt = null;
     private ConnectionPool cp = null;
 
-    public Room_DB() {
+    public _DB() {
         cp = ConnectionPool.getInstance();
         con = ConnectionPool.getConn();
     }
@@ -70,9 +71,9 @@ public class Room_DB {
 
     public void updateRoom(Room r) throws SQLException {
 
-        String qUpd = "UPDATE hroom SET rid = ?, specification = ? WHERE rid = ?";
+        String qUpd = "UPDATE hroom SET tname=?, specification = ? WHERE rid = ?";
         pstmt = con.prepareStatement(qUpd);
-        pstmt.setInt(1, r.getRoomID());
+        pstmt.setString(1, r.getRt().getRoomName());
         pstmt.setString(2, r.getRoomSpec());
         pstmt.setInt(3, r.getRoomID());
         pstmt.executeUpdate();
@@ -104,7 +105,7 @@ public class Room_DB {
         return r;
     }
 
-    public List<Room> getRooms() throws SQLException {
+    public List<Room> getRoomList() throws SQLException {
         List<Room> list = new ArrayList<>();
         String qSel = "SELECT * FROM hroom ORDER BY rid ASC";
         pstmt = con.prepareStatement(qSel);
@@ -121,7 +122,7 @@ public class Room_DB {
         return list;
     }
 
-    public List<RoomType> getRoomTypes() throws SQLException {
+    public List<RoomType> getRoomTypeList() throws SQLException {
         List<RoomType> list = new ArrayList<>();
         String qSel = "SELECT tname FROM hroomtype";
         pstmt = con.prepareStatement(qSel);
@@ -131,6 +132,32 @@ public class Room_DB {
                 RoomType rt = new RoomType();
                 rt.setRoomName(rs.getString(1));
                 list.add(rt);
+            }
+        }
+        return list;
+    }
+
+    public List<ReservationJeff> getReservationList() throws SQLException {
+        List<ReservationJeff> list = new ArrayList<>();
+        String qSel = "SELECT res.RSID, res.CID, res.STARTING, res.ENDING, res.TNAME, res.QUANTITY, rmTyp.PRICE, res.COMMENTS "
+        //String qSel = "SELECT RSID, CID, STARTING, ENDING, TNAME, QUANTITY, COMMENTS "
+                + "FROM hreservation res JOIN hroomtype rmTyp "      
+                + "ON res.TNAME = rmTyp.TNAME "
+                + "ORDER BY STARTING DESC";
+        pstmt = con.prepareStatement(qSel);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs != null) {
+            while (rs.next()) {
+                ReservationJeff r = new ReservationJeff();
+                r.rID = rs.getInt("RSID");
+                r.uID = rs.getInt("CID");       
+                r.starting = rs.getDate("STARTING");
+                r.ending = rs.getDate("ENDING");
+                r.rType = rs.getString("TNAME");
+                r.rQuantity = rs.getInt("QUANTITY");
+                r.spRequest = rs.getString("COMMENTS");
+                r.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
+                list.add(r);
             }
         }
         return list;

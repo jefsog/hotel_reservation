@@ -5,7 +5,7 @@
  */
 package _controller;
 
-import _db.Room_DB;
+import _db._DB;
 import _model.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,13 +41,13 @@ public class EditRoom extends HttpServlet {
             throws ServletException, IOException {
         try {
             Room r = new Room();
-            Room_DB db = new Room_DB();
+            _DB db = new _DB();
             HttpSession session = request.getSession();
-
             int rId = (int) session.getAttribute("rId");
             String type = request.getParameter("radRoom");
             String spec = request.getParameter("radSmoke");
             String submit = request.getParameter("btn");
+       
             if (submit != null) {
                 if (submit.equals("Edit")) {
                     r.setRoomID(rId);
@@ -55,9 +55,9 @@ public class EditRoom extends HttpServlet {
                     r.setRoomSpec(spec);
                     db.updateRoom(r);
                 }
-                RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
-                rd.forward(request, response);
             }
+            RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+            rd.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(EditRoom.class.getName()).log(Level.SEVERE, null, ex);
         }

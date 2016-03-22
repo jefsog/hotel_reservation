@@ -5,24 +5,19 @@
  */
 package _controller;
 
-import _db._DB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Trisha
  */
-public class ViewRooms extends HttpServlet {
+public class ViewReservations extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,31 +32,10 @@ public class ViewRooms extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String submit = request.getParameter("btn");
-        String rId = request.getParameter("radRoom");
-        RequestDispatcher rd;
-        if (submit != null) {
-            if (submit.equals("Add Room")) {
-                rd = request.getRequestDispatcher("adminAddRoom.jsp");
-                rd.forward(request, response);
-            } else if (submit.equals("Edit Room")) {
-                request.setAttribute("rId", rId);        
-                rd = request.getRequestDispatcher("adminEditRoom.jsp");
-                rd.forward(request, response);
-            } else if(submit.equals("View Reservations")){
-                rd = request.getRequestDispatcher("adminViewReservations.jsp");
-                rd.forward(request, response);
-            }else {
-                try {
-                    int i = Integer.parseInt(rId);
-                    _DB db = new _DB();
-                    db.deleteRoom(i);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ViewRooms.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        if (submit.equals("Go Back")) {
+            RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+            rd.forward(request, response);
         }
-        rd = request.getRequestDispatcher("adminViewRooms.jsp");
-        rd.forward(request, response);
     }
 
     /**

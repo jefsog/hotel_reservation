@@ -32,6 +32,10 @@
         <servlet-name>ViewRooms</servlet-name>
         <servlet-class>_controller.ViewRooms</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewReservations</servlet-name>
+        <servlet-class>_controller.ViewReservations</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ViewRooms</servlet-name>
         <url-pattern>/ViewRooms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReservations</servlet-name>
+        <url-pattern>/ViewReservations</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

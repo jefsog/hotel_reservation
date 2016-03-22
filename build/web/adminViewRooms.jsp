@@ -4,7 +4,7 @@
     Author     : Trisha
 --%>
 
-<%@page import="_db.Room_DB"%>
+<%@page import="_db._DB"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -24,12 +24,12 @@
                     <th class="thead"></th>
                     <th class="thead">Room Number</th>
                     <th class="thead">Room Type</th>
-                    <th class="thead">Specification</th>          
+                    <th class="thead">Specification</th>
                 </tr> 
 
                 <%  
-                    Room_DB db = new Room_DB();
-                    List<Room> list = db.getRooms();           
+                    _DB db = new _DB();
+                    List<Room> list = db.getRoomList();           
                         for (Room r : list) {
                             int id = r.getRoomID();
                             String nm = r.getRt().getRoomName();
@@ -48,6 +48,8 @@
             <input type="submit" name="btn" value="Add Room"/>
             <input type="submit" name="btn" value="Edit Room"/>
             <input type="submit" name="btn" value="Delete Room"/>
+            <input type="submit" name="btn" value="View Reservations"/>
+            
         </form>              
     </body>
 </html>

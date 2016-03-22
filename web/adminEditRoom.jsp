@@ -4,10 +4,10 @@
     Author     : Trisha
 --%>
 
+<%@page import="_db._DB"%>
 <%@page import="_model.Room"%>
 <%@page import="java.util.List"%>
 <%@page import="_model.RoomType"%>
-<%@page import="_db.Room_DB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,53 +16,45 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            int rId = Integer.parseInt((String) request.getAttribute("rId"));
+            session.setAttribute("rId", rId);
+            _DB db = new _DB();
+            Room r = db.getRoom(rId);
+            int rmID = r.getRoomID();
+            String rmType = r.getRt().getRoomName();
+            String rmSpec = r.getRoomSpec();
+        %>
         <div id="header">
             <h1>Edit Room</h1>
         </div>
         <div id="frmGroup">
             <form method="GET" name="editForm" action="EditRoom">
+                <div id="roomNum">
+                    <label>Room Number:</label> 
+                    <span><%=rmID%></span> 
+                </div>
                 <div id="radRoomType">
                     <label>Room Type:</label>
                     <%
-                        int rId = Integer.parseInt((String) request.getAttribute("rId"));
-                        session.setAttribute("rId", rId);
-                        Room_DB db = new Room_DB();
-                        Room r = db.getRoom(rId);
-                        int rmID = r.getRoomID();
-                        String rmType = r.getRt().getRoomName();
-                        String rmSpec = r.getRoomSpec();
-                        String chk = null;
-                        if (rmType.equals("King")) {
-                            chk = "checked";
-                        }
-                        if (rmType.equals("Two Queens")) {
-                            chk = "checked";
-                        }
-                        if (rmType.equalsIgnoreCase("One Queen")) {
-                            chk = "checked";
-                        }
-
+                        String chk1 = null, chk2 = null, chk3 = null;
+                        if (rmType.contains("King")) { chk1 = "checked";}               
+                        else if (rmType.contains("One Queen")) { chk2 = "checked"; }
+                        else { chk3 = "checked";}                      
                     %>
-                    <input type="radio" name="radRoom" value="King" <%= chk%>>King<br/>   
-                    <input type="radio" name="radRoom" value="One Queen" <%= chk%>>One Queen<br/>  
-                    <input type="radio" name="radRoom" value="Two Queens" <%= chk%>>Two Queens<br/>  
+                    <input type="radio" name="radRoom" value="King" <%= chk1%>>King<br/>   
+                    <input type="radio" name="radRoom" value="One Queen" <%= chk2%>>One Queen<br/>  
+                    <input type="radio" name="radRoom" value="Two Queens" <%= chk3%>>Two Queens<br/>  
                 </div>
 
-                <div id="radRoomNum">
-                    <label>Room Number:</label>       
-                    <input type="text" name="txtRoomNum" value="<%=rmID%>"/><br/> 
-                </div>
+
                 <div id="specs">
                     <label>Specifications:</label>
-                    <%! String chkSmk1, chkSmk2;%>
-                    <%
-                        if (rmSpec.equalsIgnoreCase("Non-smoking")) {
-                            chkSmk1 = "checked";
-                        }
-                        if (rmSpec.equalsIgnoreCase("Smoking")) {
-                            chkSmk2 = "checked";
-                        }
 
+                    <%
+                        String chkSmk1 = null, chkSmk2 = null;
+                        if (rmSpec.contains("Non-smoking")) { chkSmk1 = "checked";  }                     
+                        else { chkSmk2 = "checked";  }                     
                     %>
                     <input type="radio" name="radSmoke" value="Non-smoking"<%=chkSmk1%>>Non-smoking<br/>
                     <input type="radio" name="radSmoke" value="Smoking"  <%=chkSmk2%>>Smoking<br/>

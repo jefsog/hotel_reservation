@@ -3,7 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import _db.Room_DB;
+import _db._DB;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ArrayList;
@@ -68,13 +68,13 @@ public final class adminViewRooms_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                    <th class=\"thead\"></th>\n");
       out.write("                    <th class=\"thead\">Room Number</th>\n");
       out.write("                    <th class=\"thead\">Room Type</th>\n");
-      out.write("                    <th class=\"thead\">Specification</th>          \n");
+      out.write("                    <th class=\"thead\">Specification</th>\n");
       out.write("                </tr> \n");
       out.write("\n");
       out.write("                ");
   
-                    Room_DB db = new Room_DB();
-                    List<Room> list = db.getRooms();           
+                    _DB db = new _DB();
+                    List<Room> list = db.getRoomList();           
                         for (Room r : list) {
                             int id = r.getRoomID();
                             String nm = r.getRt().getRoomName();
@@ -104,6 +104,8 @@ public final class adminViewRooms_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            <input type=\"submit\" name=\"btn\" value=\"Add Room\"/>\n");
       out.write("            <input type=\"submit\" name=\"btn\" value=\"Edit Room\"/>\n");
       out.write("            <input type=\"submit\" name=\"btn\" value=\"Delete Room\"/>\n");
+      out.write("            <input type=\"submit\" name=\"btn\" value=\"View Reservations\"/>\n");
+      out.write("            \n");
       out.write("        </form>              \n");
       out.write("    </body>\n");
       out.write("</html>\n");

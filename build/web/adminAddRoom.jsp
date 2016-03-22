@@ -4,9 +4,9 @@
     Author     : Trisha
 --%>
 
+<%@page import="_db._DB"%>
 <%@page import="java.util.List"%>
 <%@page import="_model.RoomType"%>
-<%@page import="_db.Room_DB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,8 +23,8 @@
                 <div id="radRoomType">
                     <label>Room Type:</label>
                     <%
-                        Room_DB db = new Room_DB();
-                        List<RoomType> list = db.getRoomTypes();
+                        _DB db = new _DB();
+                        List<RoomType> list = db.getRoomTypeList();
                         for(RoomType rt : list){
                             String nm = rt.getRoomName();
                         

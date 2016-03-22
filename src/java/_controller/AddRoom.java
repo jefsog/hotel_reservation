@@ -5,7 +5,7 @@
  */
 package _controller;
 
-import _db.Room_DB;
+import _db._DB;
 import _model.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,7 +37,7 @@ public class AddRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Room_DB db = new Room_DB();
+        _DB db = new _DB();
         Room r = new Room();
 
         try {
