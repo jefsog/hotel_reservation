@@ -42,15 +42,18 @@ public class AddRoom extends HttpServlet {
 
         try {
             String rmType = db.searchRoomName(request.getParameter("radRoom"));
-            int rmNum = Integer.parseInt(request.getParameter("txtRoomNum").trim());
+            String rmNum = request.getParameter("txtRoomNum").trim();
             String smoke = request.getParameter("radSmoke");
             String specs = request.getParameter("txtSpecs");
             String rmSpecs = smoke + "\n" + specs;
             String add = request.getParameter("btnAdd");
 
+            if(rmNum.isEmpty()){
+                inputError(request, response, "A room number must be entered");
+            }
             if (add != null && rmType != null) {
-
-                r.setRoomID(rmNum);
+                int num = Integer.parseInt(rmNum);
+                r.setRoomID(num);
                 r.getRt().setRoomName(rmType);
                 r.setRoomSpec(rmSpecs);
                 db.addRoom(r);
