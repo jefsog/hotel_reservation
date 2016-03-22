@@ -8,10 +8,13 @@
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/Room_DB.java</file>
         </group>
         <group name="Distributed Computing">
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_model/Room.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminViewRooms.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/EditRoom.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminEditRoom.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/userChange.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/servlet/Update.java</file>
             <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/Room_DB.java</file>
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminAddRoom.jsp</file>
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/AddRoom.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/ViewRooms.java</file>
         </group>
     </open-files>
 </project-private>

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class userResetPSW_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -44,13 +44,11 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
- session.invalidate(); //invalidate all the sessions 
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
       out.write("<HTML>\r\n");
       out.write("<HEAD>\r\n");
-      out.write("<TITLE>Login</TITLE>\r\n");
+      out.write("<TITLE>Change User Password</TITLE>\r\n");
       out.write("<META content=\"Cutepage 2.0\" name=GENERATOR></HEAD>\r\n");
       out.write("<META content=\"text/html; charset=iso-8859-1\" http-equiv=Content-Type>\r\n");
       out.write("<STYLE type=text/css>\r\n");
@@ -72,7 +70,7 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<TABLE width=1382 height=55 border=0 cellPadding=0 cellSpacing=0>\r\n");
       out.write("  <TR>\r\n");
       out.write("    <TD background=./image/top.gif colSpan=2 rowSpan=2>\r\n");
-      out.write("      <DIV align=center><b><font color=\"#ffffcc\" size=\"5\" face=\"Arial, Helvetica, sans-serif\">Exam Schedule</font></b></DIV>\r\n");
+      out.write("      <DIV align=center><b><font color=\"#ffffcc\" size=\"5\" face=\"Arial, Helvetica, sans-serif\">Change Password</font></b></DIV>\r\n");
       out.write("\t</TD>\r\n");
       out.write("    <TD bgColor=#00b2eb height=1 width=1145><IMG height=1 src=\"./image/pixel.gif\" width=1></TD>\r\n");
       out.write("  </TR>\r\n");
@@ -96,7 +94,7 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("      <table width=\"480\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n");
       out.write("        <tr> \r\n");
       out.write("          <td colspan=\"3\"> \r\n");
-      out.write("            <div align=\"center\"><font face=\"Times New Roman, Times, serif\"><b><font face=\"Courier New, Courier, mono\">Please Enter Login Credentials</font></b></font></div>\r\n");
+      out.write("            <div align=\"center\"><font face=\"Times New Roman, Times, serif\"><b><font face=\"Courier New, Courier, mono\">Please enter new credentials</font></b></font></div>\r\n");
       out.write("          </td>\r\n");
       out.write("        </tr>\r\n");
       out.write("        <tr> \r\n");
@@ -106,13 +104,42 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          </td>\r\n");
       out.write("          <td colspan=\"2\">&nbsp;</td>\r\n");
       out.write("        </tr>\r\n");
-      out.write("        <form method=\"get\" action=\"Login\">\r\n");
+      out.write("        <form action=\"ResetPSW\" method=\"get\">\r\n");
       out.write("        <tr> \r\n");
       out.write("          <td colspan=\"3\"> \r\n");
-      out.write("              <div align=\"center\"> \r\n");
-      out.write("                <blockquote> username: \r\n");
-      out.write("                    <a href=\"userRegister.jsp\"></a>\r\n");
-      out.write("                  <input type=\"text\" name=\"user_name\">\r\n");
+      out.write("              <div align=\"left\"> \r\n");
+      out.write("                <blockquote>User     ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n");
+      out.write("                    ");
+
+                        String user_name = "";
+                        
+                        if(session.getAttribute("cID") != null){
+                            Integer cID = (Integer)session.getAttribute("cID");
+                            user_name = cID.toString();
+                        }
+                        
+      out.write("\r\n");
+      out.write("                        <label name=\"userID\">");
+      out.print(user_name);
+      out.write("</LABEL>\r\n");
+      out.write("                </blockquote>\r\n");
+      out.write("              </div>\r\n");
+      out.write("          </td>\r\n");
+      out.write("        </tr>\r\n");
+      out.write("        <tr> \r\n");
+      out.write("          <td colspan=\"3\"> \r\n");
+      out.write("              <div align=\"left\"> \r\n");
+      out.write("                <blockquote>New Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \r\n");
+      out.write("                  <input type=\"password\" name=\"password1\">\r\n");
+      out.write("                </blockquote>\r\n");
+      out.write("              </div>\r\n");
+      out.write("          </td>\r\n");
+      out.write("        </tr>\r\n");
+      out.write("        <tr> \r\n");
+      out.write("          <td colspan=\"3\"> \r\n");
+      out.write("              <div align=\"left\"> \r\n");
+      out.write("                <blockquote> Retype New Password: \r\n");
+      out.write("                  <input type=\"password\" name=\"password2\">\r\n");
       out.write("                </blockquote>\r\n");
       out.write("              </div>\r\n");
       out.write("          </td>\r\n");
@@ -120,22 +147,17 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <tr> \r\n");
       out.write("          <td colspan=\"3\"> \r\n");
       out.write("              <div align=\"center\"> \r\n");
-      out.write("                <blockquote> password: \r\n");
-      out.write("                  <input type=\"password\" name=\"password\">\r\n");
-      out.write("                </blockquote>\r\n");
+      out.write("                <input type=\"submit\" name=\"submit\" value=\"reset\">\r\n");
+      out.write("                ");
+ if(request.getAttribute("error")!=null) out.print(request.getAttribute("error"));
+      out.write("\r\n");
       out.write("              </div>\r\n");
       out.write("          </td>\r\n");
       out.write("        </tr>\r\n");
-      out.write("        <tr> \r\n");
-      out.write("          <td colspan=\"3\"> \r\n");
-      out.write("              <div align=\"center\"> \r\n");
-      out.write("                <input type=\"submit\" name=\"Login\" value=\"Login\">\r\n");
-      out.write("              </div>\r\n");
-      out.write("          </td>\r\n");
-      out.write("        </tr>\r\n");
-      out.write("        </form>\r\n");
+      out.write("\t\t\r\n");
       out.write("      </table>\r\n");
-      out.write("    </td>\r\n");
+      out.write("          \r\n");
+      out.write("\t      </td>\r\n");
       out.write("  </tr>\r\n");
       out.write("  <tr> \r\n");
       out.write("    <td colspan=\"2\" rowspan=\"4\" width=\"244\">&nbsp;</td>\r\n");
@@ -154,9 +176,9 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  <tr> </tr>\r\n");
       out.write("  <tr> </tr>\r\n");
       out.write("</table>\r\n");
+      out.write("                    \r\n");
       out.write("</body>\r\n");
       out.write("</html>\r\n");
-      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

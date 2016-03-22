@@ -4,9 +4,9 @@
     Author     : Trisha
 --%>
 
+<%@page import="_db._DB"%>
 <%@page import="java.util.List"%>
 <%@page import="_model.RoomType"%>
-<%@page import="_db.Room_DB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,13 +23,13 @@
                 <div id="radRoomType">
                     <label>Room Type:</label>
                     <%
-                        Room_DB db = new Room_DB();
-                        List<RoomType> list = db.getRoomTypes();
+                        _DB db = new _DB();
+                        List<RoomType> list = db.getRoomTypeList();
                         for(RoomType rt : list){
                             String nm = rt.getRoomName();
                         
                     %>
-                    <input type="radio" name="radRoom" value="<%= nm%>" checked ><%= nm%><br/>      
+                    <input type="radio" name="radRoom" value="<%= nm%>" checked><%= nm%><br/>      
                 <%}%>
                 </div>
 
@@ -39,7 +39,7 @@
                 </div>
                 <div id="specs">
                     <label>Specifications:</label>
-                    <input type="radio" name="radSmoke" value="Non-Smoking" checked>Non-smoking<br/>
+                    <input type="radio" name="radSmoke" value="Non-smoking" checked>Non-smoking<br/>
                     <input type="radio" name="radSmoke" value="Smoking"  >Smoking<br/>
                     <textarea name="txtSpecs" rows="2" cols="20"></textarea>
                 </div>

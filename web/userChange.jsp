@@ -40,7 +40,7 @@
         
             <h2>Request data</h2>
             <label class="label">Reservation ID</label>
-            <label name = "rID" value="<%=rID%>"><%=rID%></label><br>
+            <label name ="rID" value="<%=rID%>"><%=rID%></label><br>
             <label class="label">Arrival date</label>
             <%
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd");

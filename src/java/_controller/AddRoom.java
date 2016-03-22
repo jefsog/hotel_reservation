@@ -5,7 +5,7 @@
  */
 package _controller;
 
-import _db.Room_DB;
+import _db._DB;
 import _model.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,11 +37,11 @@ public class AddRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Room_DB db = new Room_DB();
+        _DB db = new _DB();
         Room r = new Room();
 
         try {
-            String rmType = db.searchRoom(request.getParameter("radRoom"));
+            String rmType = db.searchRoomName(request.getParameter("radRoom"));
             int rmNum = Integer.parseInt(request.getParameter("txtRoomNum").trim());
             String smoke = request.getParameter("radSmoke");
             String specs = request.getParameter("txtSpecs");
@@ -58,6 +58,9 @@ public class AddRoom extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+        rd.forward(request, response);
 
     }
 
