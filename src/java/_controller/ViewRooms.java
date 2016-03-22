@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,19 +40,26 @@ public class ViewRooms extends HttpServlet {
         String submit = request.getParameter("btn");
         String rId = request.getParameter("radRoom");
         RequestDispatcher rd;
+
         if (submit != null) {
             if (submit.equals("Add Room")) {
                 rd = request.getRequestDispatcher("adminAddRoom.jsp");
                 rd.forward(request, response);
             } else if (submit.equals("Edit Room")) {
-                request.setAttribute("rId", rId);        
+                if (rId == null) {
+                    inputError(request, response);
+                }
+                request.setAttribute("rId", rId);
                 rd = request.getRequestDispatcher("adminEditRoom.jsp");
                 rd.forward(request, response);
-            } else if(submit.equals("View Reservations")){
+            } else if (submit.equals("View Reservations")) {
                 rd = request.getRequestDispatcher("adminViewReservations.jsp");
                 rd.forward(request, response);
-            }else {
+            } else {
                 try {
+                    if (rId == null) {
+                        inputError(request, response);
+                    }
                     int i = Integer.parseInt(rId);
                     _DB db = new _DB();
                     db.deleteRoom(i);
@@ -62,6 +70,26 @@ public class ViewRooms extends HttpServlet {
         }
         rd = request.getRequestDispatcher("adminViewRooms.jsp");
         rd.forward(request, response);
+
+    }
+
+    private void inputError(HttpServletRequest req, HttpServletResponse res) {
+        try {
+            try (PrintWriter out = res.getWriter()) {
+                res.setContentType("text/html");
+                out.println("<html><head>"
+                        + " <title>Hotel</title></head><body>");
+                out.println("<div id='warning'> Please select a room </div>");
+                ServletContext sc = getServletConfig().getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/adminViewRooms.jsp");
+                rd.include(req, res);
+                out.println("</body></html>");
+            }
+        } catch (ServletException | IOException e1) {
+            e1.printStackTrace();
+        } finally {
+
+        }
     }
 
     /**

@@ -35,7 +35,7 @@
 
                 <div id="radRoomNum">
                     <label>Room Number:</label>       
-                    <input type="text" name="txtRoomNum"/><br/> 
+                    <input type="number" name="txtRoomNum"/><br/> 
                 </div>
                 <div id="specs">
                     <label>Specifications:</label>
