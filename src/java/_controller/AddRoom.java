@@ -62,7 +62,7 @@ public class AddRoom extends HttpServlet {
             Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
         rd.forward(request, response);
 
     }
@@ -75,7 +75,7 @@ public class AddRoom extends HttpServlet {
                         + " <title>Hotel</title></head><body>");
                 out.println("<div id='warning'>" + msg + "</div>");
                 ServletContext sc = getServletConfig().getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher("/adminAddRoom.jsp");
+                RequestDispatcher rd = sc.getRequestDispatcher("/admin/adminAddRoom.jsp");
                 rd.include(req, res);
                 out.println("</body></html>");
             }

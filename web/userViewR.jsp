@@ -71,15 +71,11 @@
 <BODY background=./image/blackground.gif bgColor=#ffffff>
     <TABLE border=0 cellPadding=0 cellSpacing=0 height=55 width=1175>
         <TR>
-            <TD background=./image/top.gif colSpan=2 rowSpan=2>
-                <DIV align=center><b><font color="#ffffcc" size="5" face="Arial, Helvetica, sans-serif">Exam Schedule</font></b></DIV>
-            </TD>
-            <TD bgColor=#00b2eb height=1 width=868><IMG height=1 src="./image/pixel.gif" width=1></TD>
-        </TR>
-        <TR>
-            <TD bgColor=#ffffff vAlign=bottom>
-                <DIV align=right></DIV>
-            </TD>
+            <%
+                session = request.getSession();
+                String username = session.getAttribute("username").toString();
+            %>
+            <td>Hello <%=username%></td>
         </TR>
     </TABLE>
     <TABLE width="1166" height="608" border=0 cellPadding=0 cellSpacing=0>
@@ -109,7 +105,7 @@
                     </TR>
                     <TR bgColor=#339966>
                         <TD>
-                            <DIV align=center><p><b><a href="userLogin.jsp"><font color="#ffffff" size="2">LOG OUT</font></a></b></p></DIV>
+                            <DIV align=center><p><b><a href="_home.jsp"><font color="#ffffff" size="2">LOG OUT</font></a></b></p></DIV>
                         </TD>
                     </TR>
                 </TABLE>
@@ -124,16 +120,11 @@
 
                         <!--Reservation -->
                         <%
-                            session = request.getSession();
+
                             int cID = (Integer) session.getAttribute("cID"); //convert to int doesn't work here.
                             //int cID = 8999;
-                            ArrayList<ReservationJeff> reservations = new ArrayList<>();
-                            try {
-                                Database db = Database.getDatabase();
-                                reservations = db.getReservation(cID);
-                            } catch (Exception e) {
-
-                            }
+                            Database db = Database.getDatabase();
+                            ArrayList<ReservationJeff> reservations = db.getReservation(cID);                      
                             session.setAttribute("reservations", reservations);
                         %>
                         <h2>Reservations</h2>

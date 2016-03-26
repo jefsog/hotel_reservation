@@ -45,9 +45,14 @@ public class Login extends HttpServlet {
         if(cID == -1){
             rd = request.getRequestDispatcher("userRegister.jsp");
             rd.forward(request,response);
-        }else{
+        }else if(cID == 9999){
+            rd = request.getRequestDispatcher("/admin/adminViewRooms.jsp");
+            rd.forward(request, response);
+        }       
+        else{
             HttpSession session = request.getSession(); 
             session.setAttribute("cID", cID);
+            session.setAttribute("username", usnm);
             rd = request.getRequestDispatcher("userViewR.jsp");
             rd.forward(request,response);
         }

@@ -36,6 +36,10 @@
         <servlet-name>ViewReservations</servlet-name>
         <servlet-class>_controller.ViewReservations</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckAvailable</servlet-name>
+        <servlet-class>_controller.CheckAvailable</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -72,9 +76,16 @@
         <servlet-name>ViewReservations</servlet-name>
         <url-pattern>/ViewReservations</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckAvailable</servlet-name>
+        <url-pattern>/CheckAvailable</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>_home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -56,7 +56,7 @@ public class EditRoom extends HttpServlet {
                     db.updateRoom(r);
                 }
             }
-            RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
             rd.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(EditRoom.class.getName()).log(Level.SEVERE, null, ex);

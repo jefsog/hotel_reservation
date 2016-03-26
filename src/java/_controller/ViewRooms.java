@@ -17,7 +17,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,34 +41,43 @@ public class ViewRooms extends HttpServlet {
         RequestDispatcher rd;
 
         if (submit != null) {
-            if (submit.equals("Add Room")) {
-                rd = request.getRequestDispatcher("adminAddRoom.jsp");
-                rd.forward(request, response);
-            } else if (submit.equals("Edit Room")) {
-                if (rId == null) {
-                    inputError(request, response);
-                }
-                request.setAttribute("rId", rId);
-                rd = request.getRequestDispatcher("adminEditRoom.jsp");
-                rd.forward(request, response);
-            } else if (submit.equals("View Reservations")) {
-                rd = request.getRequestDispatcher("adminViewReservations.jsp");
-                rd.forward(request, response);
-            } else {
-                try {
+            switch (submit) {
+                case "Add Room":
+                    rd = request.getRequestDispatcher("admin/adminAddRoom.jsp");
+                    rd.forward(request, response);
+                    break;
+                case "Edit Room":
                     if (rId == null) {
                         inputError(request, response);
                     }
-                    int i = Integer.parseInt(rId);
-                    _DB db = new _DB();
-                    db.deleteRoom(i);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ViewRooms.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    request.setAttribute("rId", rId);
+                    rd = request.getRequestDispatcher("admin/adminEditRoom.jsp");
+                    rd.forward(request, response);
+                    break;
+                case "View Reservations":
+                    rd = request.getRequestDispatcher("admin/adminViewReservations.jsp");
+                    rd.forward(request, response);
+                    break;
+                case "Log Out":
+                    rd = request.getRequestDispatcher("/_home.jsp");
+                    rd.forward(request, response);
+                    break;
+                default:
+                    try {
+                        if (rId == null) {
+                            inputError(request, response);
+                        }
+                        int i = Integer.parseInt(rId);
+                        _DB db = new _DB();
+                        db.deleteRoom(i);
+                        rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
+                        rd.forward(request, response);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ViewRooms.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
             }
         }
-        rd = request.getRequestDispatcher("adminViewRooms.jsp");
-        rd.forward(request, response);
 
     }
 
@@ -81,7 +89,7 @@ public class ViewRooms extends HttpServlet {
                         + " <title>Hotel</title></head><body>");
                 out.println("<div id='warning'> Please select a room </div>");
                 ServletContext sc = getServletConfig().getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher("/adminViewRooms.jsp");
+                RequestDispatcher rd = sc.getRequestDispatcher("/admin/adminViewRooms.jsp");
                 rd.include(req, res);
                 out.println("</body></html>");
             }

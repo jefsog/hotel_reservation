@@ -41,8 +41,6 @@ public class ConnectionPool {
 
         try {
             Context ctx = new InitialContext();
-            //for localhost
-            //ds = (DataSource) ctx.lookup("jdbc/");
             //for dilbert
             ds = (DataSource) ctx.lookup("jdbc/dilbert_HotelResDatasource");
             conn = ds.getConnection("n01039590", "oracle");

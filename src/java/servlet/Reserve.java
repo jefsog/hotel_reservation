@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import _db._DB;
 import databaseJeff.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,50 +41,66 @@ public class Reserve extends HttpServlet {
         String rType = request.getParameter("Bed");
         int rQuantity = Integer.parseInt(request.getParameter("ddlNoOfPeople"));
         String spRequest = request.getParameter("txtSpecialRequests");
-        int i = -1;
-        int roomAvailability = -1;
-        try{
+        int i = 0;
+        int roomAvailability;
+        String msg;
+        try {
             Database db = Database.getDatabase();
             roomAvailability = db.getAvailableRoomQuantity(starting, ending, rType);
-            if(rQuantity <= roomAvailability){
+            if (rQuantity <= roomAvailability) {
                 i = db.insertReservation(uID, starting, ending, rType, rQuantity, spRequest);
-                
-            }else{
-                //return error information;
-                String error = "From "+starting+ " to "+ending+" , only "+roomAvailability+" "+ rType+"  rooms left.";
-                request.setAttribute("error", error);
-                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
-                rd.forward(request,response);
+                if (rQuantity > roomAvailability) {
+                    msg = "From " + starting + " to " + ending + "\n"
+                            + rQuantity + " rooms selected. Only " + roomAvailability + " " + rType + " rooms are available.";
+                    request.setAttribute("msg", msg);
+                    RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+                    rd.forward(request, response);
+                }
             }
-            if(i == 1){
-            RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
-            rd.forward(request,response);
-            }else{
+//            } else {
+//                //return error information;
+//                msg = "From " + starting + " to " + ending + " , " + roomAvailability + " " + rType + "  rooms are available.";
+//                request.setAttribute("msg", msg);
+//                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+//                rd.forward(request, response);
+//            }
+            if (rQuantity > roomAvailability) {
+                msg = "From " + starting + " to " + ending + "\n"
+                        + rQuantity + " rooms selected. No available " + rType + " rooms. Please select another room type.";
+                request.setAttribute("msg", msg);
+                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+                rd.forward(request, response);
+            }
+            if (i == 1) {
+                RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
+                rd.forward(request, response);
+            } else {
                 //return error information
             }
-        }catch(Exception e){
-            
+
+        } catch (Exception e) {
+
         }
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Reserve</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(uID);
-            out.println(starting);
-            out.println(ending);
-            out.println(rType);
-            out.println(rQuantity);
-            out.println(spRequest);
-            out.println(roomAvailability);
-            out.println(i);
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Reserve</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println(uID);
+//            out.println(starting);
+//            out.println(ending);
+//            out.println(rType);
+//            out.println(rQuantity);
+//            out.println(spRequest);
+//            out.println(roomAvailability);
+//            out.println(i);
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -33,7 +33,7 @@ public class ViewReservations extends HttpServlet {
             throws ServletException, IOException {
         String submit = request.getParameter("btn");
         if (submit.equals("Go Back")) {
-            RequestDispatcher rd = request.getRequestDispatcher("adminViewRooms.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
             rd.forward(request, response);
         }
     }
