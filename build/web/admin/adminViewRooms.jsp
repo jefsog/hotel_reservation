@@ -49,6 +49,7 @@
             <input type="submit" name="btn" value="Edit Room"/>
             <input type="submit" name="btn" value="Delete Room"/>
             <input type="submit" name="btn" value="View Reservations"/>
+            <input type="submit" name="btn" value="Log Out"/>
             
         </form>              
     </body>

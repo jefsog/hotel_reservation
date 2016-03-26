@@ -12,8 +12,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logicJeff.ReservationJeff;
 
 /**
@@ -140,8 +143,7 @@ public class _DB {
     public List<ReservationJeff> getReservationList() throws SQLException {
         List<ReservationJeff> list = new ArrayList<>();
         String qSel = "SELECT res.RSID, res.CID, res.STARTING, res.ENDING, res.TNAME, res.QUANTITY, rmTyp.PRICE, res.COMMENTS "
-        //String qSel = "SELECT RSID, CID, STARTING, ENDING, TNAME, QUANTITY, COMMENTS "
-                + "FROM hreservation res JOIN hroomtype rmTyp "      
+                + "FROM hreservation res JOIN hroomtype rmTyp "
                 + "ON res.TNAME = rmTyp.TNAME "
                 + "ORDER BY STARTING DESC";
         pstmt = con.prepareStatement(qSel);
@@ -150,7 +152,7 @@ public class _DB {
             while (rs.next()) {
                 ReservationJeff r = new ReservationJeff();
                 r.rID = rs.getInt("RSID");
-                r.uID = rs.getInt("CID");       
+                r.uID = rs.getInt("CID");
                 r.starting = rs.getDate("STARTING");
                 r.ending = rs.getDate("ENDING");
                 r.rType = rs.getString("TNAME");
@@ -161,6 +163,81 @@ public class _DB {
             }
         }
         return list;
+    }
+
+    /*MODIFIED QUERY FOR INSERT, AND CHECK AVAILABLE ROOMS*/
+    public int insertReservation(int cID, String starting, String ending,
+            String rType, int rQuantity, String spRequest) {
+        String sql = "insert into hreservation "
+                + "values(res_sequence.nextval, ?, TO_DATE(?, 'DD-MON-YY'), TO_DATE(?, 'DD-MON-YY'), ?, ?, ?)";
+        int i;
+        ResultSet rs;
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, cID);
+            pstmt.setString(2, starting);
+            pstmt.setString(3, ending);
+            pstmt.setString(4, rType);
+            pstmt.setInt(5, rQuantity);
+            if (spRequest.equals("")) {
+                spRequest = null;
+            }
+            pstmt.setString(6, spRequest);
+
+            i = pstmt.executeUpdate();
+        } catch (Exception e) {
+            i = -1;
+        }
+        return i;  //if succeed, return 1, else return -1;
+    }
+
+    public int getRoomQty(String type) throws SQLException {
+        int qty = 0;
+
+        String qSel = "SELECT * FROM hroom WHERE tname = ?";
+        pstmt = con.prepareStatement(qSel);
+        pstmt.setString(1, type);
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs != null) {
+            while (rs.next()) {
+                qty++;
+            }
+        }
+        return qty;
+    }
+
+    public int occupiedRoomQty(String arrival, String depart, String type) {
+        int i = 0;
+        String qSel = "SELECT quantity FROM hreservation "
+                + "WHERE (starting >= TO_DATE(?, 'DD-MON-YY') AND starting <= TO_DATE(?, 'DD-MON-YY') "
+                + "OR ending >= TO_DATE(?, 'DD-MON-YY') AND ending <= TO_DATE(?, 'DD-MON-YY')) AND tname = ?";
+        ResultSet rs;
+        try {
+            pstmt = con.prepareStatement(qSel);
+            pstmt.setString(1, arrival);
+            pstmt.setString(2, depart);
+            pstmt.setString(3, arrival);
+            pstmt.setString(4, depart);
+            pstmt.setString(5, type);
+            rs = pstmt.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    i += rs.getInt(1);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            i = -1;
+        }
+        return i;
+    }
+
+    public int getAvailableRoomQty(String arrival, String depart, String rmType) throws SQLException {
+        int totalQty = getRoomQty(rmType);
+        int occupiedRm = occupiedRoomQty(arrival, depart, rmType);
+        return totalQty - occupiedRm;
     }
 
 }
