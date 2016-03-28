@@ -37,10 +37,9 @@ public class AddRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        _DB db = new _DB();
-        Room r = new Room();
-
         try {
+            _DB db = new _DB();
+            Room r = new Room();
             String rmType = db.searchRoomName(request.getParameter("radRoom"));
             String rmNum = request.getParameter("txtRoomNum").trim();
             String smoke = request.getParameter("radSmoke");
@@ -48,7 +47,7 @@ public class AddRoom extends HttpServlet {
             String rmSpecs = smoke + "\n" + specs;
             String add = request.getParameter("btnAdd");
 
-            if(rmNum.isEmpty()){
+            if (rmNum.isEmpty()) {
                 inputError(request, response, "A room number must be entered");
             }
             if (add != null && rmType != null) {
@@ -58,12 +57,11 @@ public class AddRoom extends HttpServlet {
                 r.setRoomSpec(rmSpecs);
                 db.addRoom(r);
             }
+            RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
+            rd.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
-        rd.forward(request, response);
 
     }
 

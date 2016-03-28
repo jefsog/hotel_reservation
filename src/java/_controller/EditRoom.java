@@ -39,6 +39,7 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             Room r = new Room();
             _DB db = new _DB();
@@ -47,7 +48,7 @@ public class EditRoom extends HttpServlet {
             String type = request.getParameter("radRoom");
             String spec = request.getParameter("radSmoke");
             String submit = request.getParameter("btn");
-       
+
             if (submit != null) {
                 if (submit.equals("Edit")) {
                     r.setRoomID(rId);

@@ -5,12 +5,13 @@
  */
 package _controller;
 
-import _db._DB;
+import databaseJeff.Database;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,39 +35,41 @@ public class CheckAvailable extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String arrival = request.getParameter("txtArrival");
-        String depart = request.getParameter("txtDeparture");
-        int qty = Integer.parseInt(request.getParameter("ddlNumRooms"));
-        String rType = request.getParameter("radRoom");
-        int totalRms, rmAvail, rmOccupied;
-        String msg;
         try {
-            _DB db = new _DB();
-            rmAvail = db.getAvailableRoomQty(arrival, depart, rType);
-            totalRms = db.getRoomQty(rType);
-            rmOccupied = db.occupiedRoomQty(arrival, depart, rType);
-            System.out.println(totalRms + " " + rType + " total rooms");
-            System.out.println(rmOccupied + " " + rType + " occupied");
-            System.out.println(rmAvail + " " + rType + " left");
-            if (qty <= rmAvail) {
-                msg = "From " + arrival + " to " + depart + ", only " + rmAvail + " " + rType + " room/s left.";
-                request.setAttribute("msg", msg);
+            Database db = Database.getDatabase();
+            String check = request.getParameter("btnCheck");
+            String checkIn = request.getParameter("txtCheckIn");
+            String checkOut = request.getParameter("txtCheckOut");
+            String rType = request.getParameter("ddlRoomTypes");
+            String q = request.getParameter("ddlNumRooms");
+
+            String msg = null;
+
+            int rmAvail = db.getAvailableRoomQuantity(checkIn, checkOut, rType);
+
+            if (check != null && checkIn != null && checkOut != null && rType != null && q != null) {
+                int qty = Integer.parseInt(q);
+                if (qty <= rmAvail) {
+                    msg = "From " + checkIn + " to " + checkOut + ", " + rmAvail + " " + rType + " room/s left.";
+                }
+                if (qty > rmAvail) {
+                    msg = "Arrival Date: " + checkIn + "<br/>"
+                            + "Departure Date: " + checkOut + "<br/>"
+                            + "You have selected " + qty + " rooms.<br/>"
+                            + "No available " + rType + " rooms.<br/>";
+                }   
+            } else {
+                msg = "Please enter empty fields.";           
             }
-            if(qty > rmAvail){
-                      msg = "Arrival Date: " + arrival + "<br/>"
-                        + "Departure Date: " + depart + "<br/>"
-                        + "You have selected " + qty + " rooms.<br/>"
-                        + "No available " + rType + " rooms.<br/>";
-                request.setAttribute("msg", msg);
-            }
+            request.setAttribute("msg", msg);
             RequestDispatcher rd = request.getRequestDispatcher("_home.jsp");
             rd.forward(request, response);
-        } catch (SQLException | ServletException | IOException ex) {
+
+        } catch (Exception ex) {
             Logger.getLogger(CheckAvailable.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-
     /**
      * Returns a short description of the servlet.
      *

@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 27, 2016, 11:54:45 PM
+    Author     : Trisha
+*/
+
+#roomGroup {
+    width: 91%;
+    margin-left: 3%;
+    padding: 30px;
+    position: absolute;
+    top: 40%;
+    background: rgba(0, 0, 0, .2);
+
+}
+
+.roomKing{
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    left: 38%;
+    right: 0;
+    bottom: 0;
+    top: 16%;
+    position: absolute;
+}
+
+.roomTwoQueen{
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    left: 38%;
+    right: 0;
+    bottom: 0;
+    top: 16%;
+    position: absolute;
+}
+
+.roomOneQueen{
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    left: 38%;
+    right: 0;
+    bottom: 0;
+    top: 16%;
+    position: absolute;
+}
+

@@ -25,6 +25,11 @@
 
         <!--Navigation-->
         <jsp:include page="_navigation.jsp"/>
+        <%
+                session = request.getSession();
+                String username = session.getAttribute("username").toString();
+        %>
+        <h3>Hello <%=username%></h3>
 
         <form action="Reserve" method="get">
             <h1>Reservation Request</h1>

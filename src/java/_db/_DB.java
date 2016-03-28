@@ -12,11 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import logicJeff.ReservationJeff;
 
 /**
@@ -127,13 +124,14 @@ public class _DB {
 
     public List<RoomType> getRoomTypeList() throws SQLException {
         List<RoomType> list = new ArrayList<>();
-        String qSel = "SELECT tname FROM hroomtype";
+        String qSel = "SELECT * FROM hroomtype";
         pstmt = con.prepareStatement(qSel);
         ResultSet rs = pstmt.executeQuery();
         if (rs != null) {
             while (rs.next()) {
                 RoomType rt = new RoomType();
                 rt.setRoomName(rs.getString(1));
+                rt.setRoomPrice(rs.getDouble(2));
                 list.add(rt);
             }
         }
@@ -164,9 +162,9 @@ public class _DB {
         }
         return list;
     }
-
-    /*MODIFIED QUERY FOR INSERT, AND CHECK AVAILABLE ROOMS*/
-    public int insertReservation(int cID, String starting, String ending,
+    
+    /*MODIFIED QUERY FOR INSERT RESERVATION, AND CHECK AVAILABLE ROOMS*/
+    /*public int insertReservation(int cID, String starting, String ending,
             String rType, int rQuantity, String spRequest) {
         String sql = "insert into hreservation "
                 + "values(res_sequence.nextval, ?, TO_DATE(?, 'DD-MON-YY'), TO_DATE(?, 'DD-MON-YY'), ?, ?, ?)";
@@ -238,6 +236,6 @@ public class _DB {
         int totalQty = getRoomQty(rmType);
         int occupiedRm = occupiedRoomQty(arrival, depart, rmType);
         return totalQty - occupiedRm;
-    }
+    }*/
 
 }

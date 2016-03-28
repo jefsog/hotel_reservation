@@ -6,23 +6,23 @@
 
 $(function () {
     var dateToday = new Date();
-    $("#arrival").datepicker({
+    $("#checkIn").datepicker({
         dateFormat:'dd-M-y',
         changeMonth: true,
         changeYear: true,
         numberOfMonths: 1,
         minDate: dateToday,
         onClose: function (selectedDate) {
-        $("#depart").datepicker("option", "minDate", selectedDate);
+        $("#checkOut").datepicker("option", "minDate", selectedDate);
         }
     });
-    $("#depart").datepicker({
+    $("#checkOut").datepicker({
         dateFormat:'dd-M-y',
         changeMonth: true,
         changeYear: true,
         numberOfMonths: 1,
         onClose: function (selectedDate) {
-            $("#arrival").datepicker("option", "maxDate", selectedDate);
+            $("#checkIn").datepicker("option", "maxDate", selectedDate);
         }
     });
 });
