@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1>Royal Inns</h1>
-<h2>Where you&rsquo;re always treated like royalty</h2>
-
+<header id="headerGroup">
+    <h1>Royal Inns</h1>
+    <h2>Where you&rsquo;re always treated like royalty</h2>
+</header>

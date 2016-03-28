@@ -8,8 +8,8 @@
 <nav id="navGroup">
     <ul>
         <li><a href="_home.jsp">Home</a></li>
-        <li><a href="guest/rooms.html">Rooms</a></li>
-        <li><a href="guest/contactUs.html">Contact Us</a></li>
-        <li><a href="guest/aboutUs.html">About Us</a></li>
+        <li><a href="rooms.jsp">Rooms</a></li>
+        <li><a href="contact.jsp">Contact Us</a></li>
+        <li><a href="about.jsp">About Us</a></li>
     </ul>
 </nav>

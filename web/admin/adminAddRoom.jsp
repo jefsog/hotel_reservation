@@ -12,42 +12,44 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hotel</title>
+        <title>Add Room</title>
+        <link rel="stylesheet" href="Styles/adminAdd_Edit.css" type="text/css"/>
     </head>
-    <body>
+    <body style="background-image: url(images/natural_paper.png); ">
         <div id="header">
             <h1>Add Room</h1>
         </div>
         <div id="frmGroup">
             <form method="GET" name="addForm" action="AddRoom">
-                <div id="radRoomType">
-                    <label>Room Type:</label>
-                    <%
-                        _DB db = new _DB();
-                        List<RoomType> list = db.getRoomTypeList();
-                        for(RoomType rt : list){
-                            String nm = rt.getRoomName();
-                        
-                    %>
-                    <input type="radio" name="radRoom" value="<%= nm%>" checked><%= nm%><br/>      
-                <%}%>
+                <div id="typeGroup">
+                    <h3>Room Type:</h3>
+
+                    <input type="radio" name="radRoom" value="King" id="radKing" checked>
+                    <label>King</label>   
+
+                    <input type="radio" name="radRoom" value="Two Queen" id="radTQueen">
+                    <label>Two Queen</label>   
+
+                    <input type="radio" name="radRoom" value="One Queen" id="radOQueen">
+                    <label>One Queen</label>                     
                 </div>
 
                 <div id="radRoomNum">
-                    <label>Room Number:</label>       
-                    <input type="number" name="txtRoomNum"/><br/> 
+                    <h3>Room Number:</h3>       
+                    <input class="txtGroup" type="number" name="txtRoomNum"/><br/> 
                 </div>
-                <div id="specs">
-                    <label>Specifications:</label>
-                    <input type="radio" name="radSmoke" value="Non-smoking" checked>Non-smoking<br/>
-                    <input type="radio" name="radSmoke" value="Smoking"  >Smoking<br/>
-                    <textarea name="txtSpecs" rows="2" cols="20"></textarea>
+                <div id="smokeGroup">
+                    <h3>Specifications:</h3>
+
+                    <input type="radio" name="radSmoke" value="Non-smoking" checked>
+                    <label>Non-smoking</label>
+
+                    <input type="radio" name="radSmoke" value="Smoking"  >
+                    <label>Smoking</label>
                 </div>
-
-
                 <div id ="btnGroup">
-                    <input class="buttons" type="reset" name="btnReset" value="Reset"/>
-                    <input class="buttons" type="submit" name="btnAdd" value="Add"/>
+                    <input class="btn" type="reset" name="btnReset" value="Reset"/>
+                    <input class="btn" type="submit" name="btnAdd" value="Add"/>
                 </div>       
             </form>
         </div>

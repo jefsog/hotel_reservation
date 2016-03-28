@@ -13,12 +13,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>View Reservations</title>
+        <link rel="stylesheet" href="Styles/main.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/adminVw.css" type="text/css"/>
     </head>
-    <body>
-        <h2>Reservations</h2>
+    <body style="background-image: url(images/natural_paper.png); ">
+        
+        <div class="tableForm">
+        <h1>Reservations</h1>
         <form method="GET" name="viewReservations" action="ViewReservations">
             <table border="1">
+                <thead>
                 <tr>          
                     <th class="thead">Reservation ID</th>
                     <th class="thead">User ID</th>
@@ -29,7 +34,8 @@
                     <th class="thead">Price</th>
                     <th class="thead">Special Request</th>
                 </tr>
-
+                </thead>
+                <tbody>
                 <%
                     _DB db = new _DB();
                    // Date today = new Date();
@@ -50,9 +56,10 @@
                 <%
                  //   }
                 }%>
-
+                </tbody>
             </table>
-            <input type="submit" name="btn" value="Go Back"/>
-        </form>              
+            <input class="btns" type="submit" name="btn" value="Go Back"/>
+        </form>   
+        </div>
     </body>
 </html>

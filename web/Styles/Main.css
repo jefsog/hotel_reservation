@@ -1,49 +1,97 @@
-﻿/* Styles for the elements */
-body
-{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 85%;
-    border: 3px solid blue;
-    width: 550px;
-    margin: 0 auto;
-    padding: 15px;
-    background-color: White;
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 26, 2016, 10:32:23 AM
+    Author     : Trisha
+*/
+/*FONTS*/
+/*menu and header h2*/
+@font-face{
+    font-family: 'Soria';
+    src: url(../fonts/Soria.ttf) format('truetype');
 }
-header {
-    border-bottom: 2px solid blue;
-    padding-bottom: 1em;
+/*header h1*/
+@font-face{
+    font-family: 'Arnetalia';
+    src: url(../fonts/Arnetalia.ttf) format('truetype');
 }
-    header h1 {
-        font-size: 200%;
-        font-weight: bold;
-        color: #0000FF;
-        margin: 0 0 .25em;
-    }
-    header h2 {
-        font-size: 140%;
-        font-family: 'Times New Roman', Times, serif;
-        font-style: italic;
-        color: #ff0000;
-        margin-left: 1em;
-    }
-section {
-    padding: 10px;
+/*body*/
+@font-face{
+    font-family: 'Madras';
+    src: url(../fonts/Madras.otf) format('opentype');
 }
-h1 {
-    font-size: 140%;
-    color: #0000FF;
-    margin: .5em 0 .25em;
+
+/* BODY*/
+body {  
+    color:#FCEFBD;
+    margin: 0;
+    padding: 0;
+    font-family: 'Madras', sans-serif;
+    text-align: center;
+    background-color: #fff;
+    background-repeat: repeat, no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+    background-size: auto, cover;
+
 }
-h2
-{
-    font-size: 120%;
-    margin: .5em 0;
+
+/* HEADER*/
+#headerGroup{
+    top: 15%;
+    left: 5%;
+    position: fixed;
+
 }
-footer {
-    border-top: 2px solid blue;
+
+/*h1*/
+#headerGroup h1{
+    font-family: 'Arnetalia', cursive;
+    text-shadow:0px 6px 1px #ed2f2f;
+    margin: 0 0 23px 0;
+    font-size: 8em;
+    opacity: 0.9;
+    
 }
-    footer p {
-        font-size: 80%;
-        text-align: right;
-        margin-bottom: 0;
-    }
+
+/*h2*/
+#headerGroup h2{
+    font-family: 'Soria', serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    opacity: 0.9;
+    position: fixed;
+    top: 31%;
+    left: 13%;
+}
+/*h3*/
+h3{
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/*FOOTER*/
+#footerGroup{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: left;
+}
+
+
+
+
+
+
+

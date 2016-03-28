@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 27, 2016, 11:50:17 PM
+    Author     : Trisha
+*/
+
+/*FONTS*/
+@font-face{
+    font-family: 'Madras';
+    src: url(../fonts/Madras.otf) format('opentype');
+}
+
+/*LOGIN GROUP*/
+#loginGroup {
+    position: fixed;
+    top: 5%;
+    left: 80%;
+}
+
+/*username, check-in/out style*/
+.txtGroup{
+    font-family: 'Madras', sans-serif;
+    width: 130px;
+    height: 20px;
+    color: #000;
+    background: rgba(255, 255, 255, .3);
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 1em;
+    padding: 5px;
+}
+
+/*password style*/
+#loginGroup input[type=password]{
+    width: 130px;
+    height: 20px;
+    color: #000;
+    background: rgba(255, 255, 255, .3);
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+/* username input animation*/
+#loginGroup  input[type=text]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,220,.5);
+    opacity: 0.9;
+    color: #000;
+}
+
+/* password input animation*/
+#loginGroup  input[type=password]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,220,.5);
+    opacity: 0.9;
+    color: #000;
+}
+
+/* login placeholder*/
+::-webkit-input-placeholder{
+    opacity: 0.8;
+    color: #000;
+}
+
+::-moz-input-placeholder{
+    opacity: 0.8;
+    color: #000;
+}
+
+/*default button style*/
+.btn{
+    color:#FCEFBD;
+    font-family: 'Madras', sans-serif;
+    width: 90px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    font-size: 1.3em;
+    padding: 5px;
+    margin-top: 10px;
+    opacity: .9;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/*CHECK GROUP*/
+#checkGroup {
+    width: 91%;
+    margin-left: 3%;
+    padding: 30px;
+    position: fixed;
+    top: 40%;
+    background: rgba(0, 0, 0, .2);
+
+}
+
+/*check-in and check-out input*/
+#checkGroup #checkIn, #checkGroup #checkOut{
+    width:250px;
+    height:30px;
+    padding:10px;
+    font-size: 1.3em;
+
+}
+/*drop-down list group*/
+.ddlGroup{
+    font-family: 'Madras', sans-serif;
+    width:250px;
+    height:50px;
+    background: rgba(255, 255, 255, .3);
+    border: 1px solid rgba(255,255,220,.5);
+    border-radius: 2px;
+    font-size: 1.3em;
+    padding: 10px;
+    opacity: 0.9;
+}
+
+/*check availability button*/
+#btnCheckAvail{
+    width:250px;
+    height:50px;
+    padding:10px;
+}
+
+ul li {
+    list-style: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+#message{
+    color: #f01414;
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    right: 0;
+    bottom: 35%;
+    left: 0;
+    text-align: center;
+}
+

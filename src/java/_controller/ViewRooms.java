@@ -39,19 +39,12 @@ public class ViewRooms extends HttpServlet {
         String submit = request.getParameter("btn");
         String rId = request.getParameter("radRoom");
         RequestDispatcher rd;
-
+        _DB db = new _DB();
+        String msg = null;
         if (submit != null) {
             switch (submit) {
                 case "Add Room":
                     rd = request.getRequestDispatcher("admin/adminAddRoom.jsp");
-                    rd.forward(request, response);
-                    break;
-                case "Edit Room":
-                    if (rId == null) {
-                        inputError(request, response);
-                    }
-                    request.setAttribute("rId", rId);
-                    rd = request.getRequestDispatcher("admin/adminEditRoom.jsp");
                     rd.forward(request, response);
                     break;
                 case "View Reservations":
@@ -62,14 +55,31 @@ public class ViewRooms extends HttpServlet {
                     rd = request.getRequestDispatcher("/_home.jsp");
                     rd.forward(request, response);
                     break;
+//                case "Edit Room":
+//                    if (rId == null) {
+//
+//                    }
+//                    request.setAttribute("rId", rId);
+//                    request.setAttribute("msg", msg);
+//                    rd = request.getRequestDispatcher("admin/adminEditRoom.jsp");
+//                    rd.forward(request, response);
+//                    break;
                 default:
                     try {
-                        if (rId == null) {
-                            inputError(request, response);
+                        if (rId != null) {
+                            if (submit.equals("Delete Room")) {
+                                int i = Integer.parseInt(rId);
+                                db.deleteRoom(i);
+                            } else if (submit.equals("Edit Room")) {
+                                request.setAttribute("rId", rId);
+                                rd = request.getRequestDispatcher("admin/adminEditRoom.jsp");
+                                rd.forward(request, response);
+                            }
+                        } else {
+                            msg = "Please select a room.";
                         }
-                        int i = Integer.parseInt(rId);
-                        _DB db = new _DB();
-                        db.deleteRoom(i);
+
+                        request.setAttribute("msg", msg);
                         rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
                         rd.forward(request, response);
                     } catch (SQLException ex) {

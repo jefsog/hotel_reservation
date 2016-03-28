@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 28, 2016, 11:42:43 AM
+    Author     : Trisha
+*/
+
+/*FONTS*/
+@font-face{
+    font-family: 'Madras';
+    src: url(../fonts/Madras.otf) format('opentype');
+}
+
+.tableForm {
+    width: 90%;
+    margin-top: 7%;
+    margin-left: 2%;
+    padding: 10px;
+    position: relative;
+}
+
+.thead{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+table, th, td, tr {
+    font-size: 1.2em;
+    border: none;
+    border-spacing: 5px 5px;
+    padding: 15px;
+    border-collapse: separate;
+    text-align: center;
+    margin: 0px auto;         
+    background-color: rgba(0, 0, 0, .2);
+}
+
+h1{
+    color: #000;
+    font-size: 1.5em;
+}
+
+/*default button style*/
+.btns{
+    color:#000;
+    font-family: 'Madras', sans-serif;
+    width: 200px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    font-size: 1.8em;
+    padding: 5px;
+    margin-top: 10px;
+    opacity: .9;
+    cursor: pointer;
+}
+
+.btns:hover {
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+#nav ul{
+    position: fixed;
+    top: 20%;
+    left: 8%;
+    list-style-type: none;
+}
+
+#message{
+    color: #f01414;
+    font-weight: bold;
+    font-size: 1.5em;
+    position: fixed;
+    right: 70%;
+    bottom: 78%;
+    left: 0;
+    text-align: center;
+}
+
+
+
