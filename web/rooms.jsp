@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="Styles/nav.css" type="text/css"/>
         <link rel="stylesheet" href="Styles/rooms.css" type="text/css"/>
     </head>
-    <body style="background-image: url(images/pattern.png), url(images/room_2.jpg); ">
+    <body style="background-image: url(images/pattern.png), url(images/room_3.jpg); ">
         <!--Header-->
         <jsp:include page="_header.jsp"/>
 

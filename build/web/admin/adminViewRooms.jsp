@@ -20,8 +20,6 @@
         <link rel="stylesheet" href="Styles/adminVw.css" type="text/css"/>
     </head>
     <body style="background-image: url(images/natural_paper.png); ">
-        <!--Navigation-->
-        <jsp:include page="//_navigation.jsp"/>
 
         <div class="tableForm">
             <h1>Rooms</h1>
@@ -83,7 +81,5 @@
                 </div>     
             </form>  
         </div>
-        <!--Footer-->
-        <jsp:include page="//_footer.jsp"/>
     </body>
 </html>
