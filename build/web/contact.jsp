@@ -19,7 +19,7 @@
 
     </head>
 
-    <body style="background-image: url(images/pattern.png), url(images/steps_2.jpg); ">
+    <body style="background-image: url(images/pattern.png), url(images/steps_3.jpg); ">
         <!--Header-->
         <jsp:include page="_header.jsp"/>
 
