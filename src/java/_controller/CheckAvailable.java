@@ -47,7 +47,7 @@ public class CheckAvailable extends HttpServlet {
 
             int rmAvail = db.getAvailableRoomQuantity(checkIn, checkOut, rType);
 
-            if (check != null && checkIn != null && checkOut != null && rType != null && q != null) {
+            if (check != null && !checkIn.isEmpty() && !checkOut.isEmpty() && rType != null && q != null) {
                 int qty = Integer.parseInt(q);
                 if (qty <= rmAvail) {
                     msg = "From " + checkIn + " to " + checkOut + ", " + rmAvail + " " + rType + " room/s left.";

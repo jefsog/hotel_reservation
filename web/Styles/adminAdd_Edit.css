@@ -7,18 +7,14 @@ and open the template in the editor.
     Created on : Mar 28, 2016, 2:15:56 PM
     Author     : Trisha
 */
-/*FONTS*/
-@font-face{
-    font-family: 'Madras';
-    src: url(../fonts/Madras.otf) format('opentype');
-}
+@import url(fonts.css);
 
 
 body{
     color:#000;
     margin: 0 auto;
     padding: 0;
-    font-family: 'Madras', sans-serif;
+    font-family: 'Fira', sans-serif;
     font-size: 1.8em;
     text-align: center;
     background-color: #fff;
@@ -51,7 +47,7 @@ input[type="radio"] + label span {
 
 /*username, check-in/out style*/
 .txtGroup{
-    font-family: 'Madras', sans-serif;
+    font-family: 'Fira', sans-serif;
     width: 200px;
     height: 30px;
     color: #000;
@@ -65,7 +61,7 @@ input[type="radio"] + label span {
 
 
 /* username input animation*/
-#radRoomNum  input[type=text]:focus{
+.txt  input[type=text]:focus{
     outline: none;
     border: 1px solid rgba(255,255,220,.5);
     opacity: 0.9;
@@ -85,8 +81,8 @@ input[type="radio"] + label span {
 
 /*default button style*/
 .btn{
-    font-family: 'Madras', sans-serif;
-    width: 120px;
+    font-family: 'Fira', sans-serif;
+    width: 25%;
     height: 60px;
     background: transparent;
     border: none;

@@ -40,6 +40,10 @@
         <servlet-name>CheckAvailable</servlet-name>
         <servlet-class>_controller.CheckAvailable</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login_Signup</servlet-name>
+        <servlet-class>_controller.Login_Signup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>CheckAvailable</servlet-name>
         <url-pattern>/CheckAvailable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login_Signup</servlet-name>
+        <url-pattern>/Login_Signup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

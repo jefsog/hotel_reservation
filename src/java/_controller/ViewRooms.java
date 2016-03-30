@@ -55,15 +55,6 @@ public class ViewRooms extends HttpServlet {
                     rd = request.getRequestDispatcher("/_home.jsp");
                     rd.forward(request, response);
                     break;
-//                case "Edit Room":
-//                    if (rId == null) {
-//
-//                    }
-//                    request.setAttribute("rId", rId);
-//                    request.setAttribute("msg", msg);
-//                    rd = request.getRequestDispatcher("admin/adminEditRoom.jsp");
-//                    rd.forward(request, response);
-//                    break;
                 default:
                     try {
                         if (rId != null) {

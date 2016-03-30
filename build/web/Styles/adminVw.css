@@ -7,12 +7,7 @@ and open the template in the editor.
     Created on : Mar 28, 2016, 11:42:43 AM
     Author     : Trisha
 */
-
-/*FONTS*/
-@font-face{
-    font-family: 'Madras';
-    src: url(../fonts/Madras.otf) format('opentype');
-}
+@import url(fonts.css);
 
 .tableForm {
     width: 90%;
@@ -46,8 +41,8 @@ h1{
 /*default button style*/
 .btns{
     color:#000;
-    font-family: 'Madras', sans-serif;
-    width: 200px;
+    font-family: 'Fira', sans-serif;
+    width: 100%;
     height: 50px;
     background: transparent;
     border: none;
@@ -73,11 +68,10 @@ h1{
 #message{
     color: #f01414;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.4em;
     position: fixed;
-    right: 70%;
-    bottom: 78%;
-    left: 0;
+    top: 20%;
+    left: 11%;
     text-align: center;
 }
 

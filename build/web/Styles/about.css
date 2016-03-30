@@ -7,12 +7,23 @@ and open the template in the editor.
     Created on : Mar 28, 2016, 12:13:13 AM
     Author     : Trisha
 */
-#aboutGroup {
-    width: 91%;
-    margin-left: 3%;
-    padding: 30px;
-    position: absolute;
-    top: 40%;
-    background: rgba(255, 255, 255, .3);
 
+h3{
+    font-weight: normal;
+    font-size: 3.5em;
+}
+
+#aboutGroup {
+    margin: 0 auto;
+    margin-top: 2%;
+    padding: 30px;
+    position: relative;
+    background: rgba(0, 0, 0, .4);
+
+}
+
+#para{
+    font-size: 1.6em;
+    text-align: center;
+    line-height: 200%;
 }

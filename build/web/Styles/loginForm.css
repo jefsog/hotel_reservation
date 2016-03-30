@@ -1,0 +1,111 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 29, 2016, 10:31:40 AM
+    Author     : Trisha
+*/
+
+#header {
+    width: 100%;
+    text-align: center;
+    font: 1.1em 'Fira', sans-serif;
+    line-height: 1em;
+    color: #000;
+    margin-top: 10%;
+}
+
+/*form*/
+#frmGroup{
+    border: 1px solid #000;
+    width: 30%;
+    height: 50%;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 3%;
+    color: #000;
+}
+
+/*text input*/
+.txtGroup{
+    font-family: 'Fira', sans-serif;
+    width: 200px;
+    height: 30px;
+    color: #FCEFBD;
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+/*text label*/
+.txt label{
+    display: block;
+    margin: 0px;
+    float: left;
+    width: 40%;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.txt #name{
+    font-size: 1.8em;
+    margin: 0 auto;
+    padding:5px;
+}
+
+/*text containers with label and input text*/
+.txt{
+    margin:20px;
+}
+
+/*text input animation*/
+.txt  input[type=text]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,220,.5);
+    opacity: 0.9;
+    color: #FCEFBD;
+}
+
+/*default buttons*/
+.btn{
+    font-family: 'Fira', sans-serif;
+    width: 150px;
+    height: 60px;
+    background: transparent;
+    border: none;
+    font-size: 2em;
+    padding: 5px;
+    margin-top: 10px;
+    opacity: .9;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/*buttons animation*/
+.btn:hover {
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+#message{
+    color: #f01414;
+    font-weight: bold;
+    font-size: 1.5em;
+    position: relative;
+    right: 0;
+    bottom: -1%;
+    left: 0;
+    text-align: center;
+}
+
+#footerGroup{
+    color:#000;
+
+}
+

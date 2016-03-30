@@ -33,33 +33,39 @@ public class Change extends HttpServlet {
             throws ServletException, IOException {
         String submit = request.getParameter("submit");
         String rID = request.getParameter("reservation");
-        
-        if(submit.equals("change")){
-            request.setAttribute("rID", rID);
-            RequestDispatcher rd = request.getRequestDispatcher("userChange.jsp");
-            rd.forward(request, response);
-        }
-        
-        if(submit.equals("delete")){
-            int n = Integer.parseInt(rID);
-            try{
-                Database db = Database.getDatabase();
-                db.deleteReservation(n);
-            }catch(Exception e){
-                
+        String msg = null;
+        if (rID != null) {
+            if (submit.equals("change")) {
+                request.setAttribute("rID", rID);
+                RequestDispatcher rd = request.getRequestDispatcher("userChange.jsp");
+                rd.forward(request, response);
             }
-            RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
-            rd.forward(request, response);
+
+            if (submit.equals("delete")) {
+                int n = Integer.parseInt(rID);
+                try {
+                    Database db = Database.getDatabase();
+                    db.deleteReservation(n);
+                } catch (Exception e) {
+
+                }
+                //RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
+                //rd.forward(request, response);
+            }
+        } else {
+            msg = "Please select a room.";
         }
-        
-        
+        request.setAttribute("msg", msg);
+        RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
+        rd.forward(request, response);
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Change</title>");            
+            out.println("<title>Servlet Change</title>");
             out.println("</head>");
             out.println("<body>");
             out.println(submit);

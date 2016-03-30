@@ -300,7 +300,7 @@ public class Database {
 
     public ArrayList<ReservationJeff> getReservation(int cID) throws SQLException {
         ArrayList<ReservationJeff> reservations = new ArrayList<>();
-        String sql = "select * from hreservation where cID = ? order by rsid";
+        String sql = "select * from hreservation where cID = ? order by rsid DESC";
         //PreparedStatement ps;
         pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, cID);
@@ -324,7 +324,9 @@ public class Database {
 
     public int updateReservation(int rID, String starting, String ending,
             String rType, int rQuantity, String spRequest) {
-        String sql = "update hreservation set starting=?, ending=?, tname=?, quantity=?, comments=?"
+        //String sql = "update hreservation set starting=?, ending=?, tname=?, quantity=?, comments=?"
+        //       + "where rsid=?";
+        String sql = "update hreservation set starting = TO_DATE(?, 'DD-MON-YY'), ending = TO_DATE(?, 'DD-MON-YY'), tname=?, quantity=?, comments=? "
                 + "where rsid=?";
         int i = 0;
         try {
@@ -332,8 +334,10 @@ public class Database {
             //ResultSet rs;
             pstmt = con.prepareStatement(sql);
 
-            pstmt.setDate(1, java.sql.Date.valueOf(starting));
-            pstmt.setDate(2, java.sql.Date.valueOf(ending));
+            //pstmt.setDate(1, java.sql.Date.valueOf(starting));
+            //pstmt.setDate(2, java.sql.Date.valueOf(ending));           
+            pstmt.setString(1, starting);
+            pstmt.setString(2, ending);
             pstmt.setString(3, rType);
             pstmt.setInt(4, rQuantity);
             if (spRequest.equals("")) {
@@ -377,6 +381,15 @@ public class Database {
             i = -1;
         }
         return i;
+    }
+
+    public boolean validateUser(String usnm, String psw) throws SQLException {
+        boolean isValid = true;
+        int i = getUserID(usnm, psw);
+        if (i == -1) {
+            isValid = false;
+        }
+        return isValid;
     }
 
 }

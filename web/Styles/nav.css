@@ -7,18 +7,13 @@ and open the template in the editor.
     Created on : Mar 26, 2016, 11:10:03 AM
     Author     : Trisha
 */
-/*FONTS*/
-@font-face{
-    font-family: 'Madras';
-    src: url(../fonts/Madras.otf) format('opentype');
-}
-
+@import url(fonts.css);
 /* NAVIGATION START*/
 #navGroup{
     width: 100%;
     position: fixed;
     top: 0;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, .5);
     padding-top: 3%;
     padding-bottom: 1%;
 }
@@ -51,11 +46,12 @@ and open the template in the editor.
   text-align: center;
 }
 #navGroup ul li a {
-  color: #FCEFBD;
+  color: #fff;
+  opacity: 0.9;
   text-decoration: none;
   display: block;
   padding: 15px 25px;
-  font-family: 'Madras', sans-serif;
+  font-family: 'Fira', sans-serif;
   text-transform: uppercase;
   font-size: 1.7em;
   position: relative;
