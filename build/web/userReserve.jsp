@@ -12,81 +12,80 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reservation Request</title>
-        <link href="Styles/Main.css" rel="stylesheet" />
-        <link href="Styles/Request.css" rel="stylesheet" />
+        <link rel="stylesheet" href="Styles/adminAdd_Edit.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/userForm.css" type="text/css"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js" defer></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" defer></script>
         <script type="text/javascript" src="js/home.js" defer></script>
     </head>
-    <body>
-        <!--Header-->
-        <jsp:include page="_header.jsp"/>
-
-        <!--Navigation-->
-        <jsp:include page="_navigation.jsp"/>
+    <body style="background-image: url(images/natural_paper.png); ">
         <%
-                session = request.getSession();
-                String username = session.getAttribute("username").toString();
+            session = request.getSession();
+            String username = session.getAttribute("username").toString();
         %>
-        <h3>Hello <%=username%></h3>
-
-        <form action="Reserve" method="get">
+        <div id="header">
             <h1>Reservation Request</h1>
-
-            <h2>Request data</h2>
-            <!--<label class="label">Arrival date</label>
-            <%--
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd");
+        </div>
+        <div id="frmGroup">
+            <form action="Reserve" method="get">
+                <!--<label class="label">Arrival date</label>
+                <%--
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd");
 
                 Date arrival = new Date();
                 String date = sdf.format(arrival);
-            --%>
-            <input name="txtArrivalDate" type="text" value="<%--=date--%>" id="txtArrivalDate" />
-            <br>    
-            <label class="label">Departure date</label>
-            <input name="txtDepartureDate" type="text" id="txtDepartureDate" />
-            <br>  -->  
-            
-            <!--MODIFIED DATE INPUT-->
-            <label for="arrival">Arrival date: </label>&nbsp;
-            <input name="txtArrivalDate" type="text" id="arrival"/>
-            <br>    
-            <label for="depart">Departure date: </label>&nbsp;
-            <input name="txtDepartureDate" type="text" id="depart"/>
-            <br> 
-            <!--END-->
+                --%>
+                <input name="txtArrivalDate" type="text" value="<%--=date--%>" id="txtArrivalDate" />
+                <br>    
+                <label class="label">Departure date</label>
+                <input name="txtDepartureDate" type="text" id="txtDepartureDate" />
+                <br>  -->  
 
-            <label class="label">Number of room</label>
-            <select name="ddlNoOfPeople" id="ddlNoOfPeople">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <!--MODIFIED DATE INPUT-->
+                <input class="txtGroup" name="txtCheckIn" type="text" id="checkIn" placeholder="Check in"/>
 
-            </select><br />          
+                <input class="txtGroup" name="txtCheckOut" type="text" id="checkOut" placeholder="Check out"/>
+                <!--END-->
 
-            <label class="label">Room type</label><br>
-            <div style="position: relative; left: 130px">
-                <input id="rdoKing" type="radio" name="Bed" value="King" checked="checked" /><label for="rdoKing">King</label>
-                <br>
+                <select name="ddlNumRooms" class="ddlGroup">
+                    <option value="" selected disabled>Number of rooms</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>         
 
-                <input id="rdoDouble" type="radio" name="Bed" value="Two Queens" /><label for="rdoDouble">Two Queens</label>
-                <br>
-                <input id="rdoSingle" type="radio" name="Bed" value="One Queen" /><label for="rdoSingle">One Queen</label><br />
-            </div>
-            <h2>Special requests</h2>
-            <textarea name="txtSpecialRequests" rows="2" cols="20" id="txtSpecialRequests">
-            </textarea><br />
+                <div id="typeGroup">
+                    <h3>Room type:</h3>
 
-            <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="button" /><br/>
-            <%
-                if (request.getAttribute("msg") != null) {
-                    out.print(request.getAttribute("msg"));
-                }
-            %>
-        </form>
-        <!--Footer-->
-        <jsp:include page="_footer.jsp"/>
+                    <input id="radKing" type="radio" name="Bed" value="King" checked="checked" />
+                    <label>King</label>
+
+
+                    <input id="radTQueen" type="radio" name="Bed" value="Two Queens" />
+                    <label>Two Queens</label>
+
+                    <input id="radOQueen" type="radio" name="Bed" value="One Queen" />
+                    <label>One Queen</label>
+                </div>
+                <div id="specialReqs">
+                    <h3>Special requests</h3>
+                    <textarea name="txtSpecialRequests" rows="2" cols="20" id="txtSpecialRequests">
+                    </textarea>
+                </div>
+
+
+                <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="btn" /><br/>
+
+                <div id="message">
+                    <%
+                        if (request.getAttribute("msg") != null) {
+                            out.print(request.getAttribute("msg"));
+                        }
+                    %>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

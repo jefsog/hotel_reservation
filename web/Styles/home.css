@@ -7,23 +7,18 @@ and open the template in the editor.
     Created on : Mar 27, 2016, 11:50:17 PM
     Author     : Trisha
 */
-
-/*FONTS*/
-@font-face{
-    font-family: 'Madras';
-    src: url(../fonts/Madras.otf) format('opentype');
-}
+@import url(fonts.css);
 
 /*LOGIN GROUP*/
 #loginGroup {
     position: fixed;
-    top: 5%;
-    left: 80%;
+    top: 2%;
+    left: 82%;
 }
 
 /*username, check-in/out style*/
 .txtGroup{
-    font-family: 'Madras', sans-serif;
+    font-family: 'Fira', sans-serif;
     width: 130px;
     height: 20px;
     color: #000;
@@ -31,7 +26,7 @@ and open the template in the editor.
     border: 1px solid rgba(255,255,220,.5);
     border-radius: 2px;
     font-weight: normal;
-    font-size: 1em;
+    font-size: .9em;
     padding: 5px;
 }
 
@@ -78,34 +73,37 @@ and open the template in the editor.
 
 /*default button style*/
 .btn{
-    color:#FCEFBD;
-    font-family: 'Madras', sans-serif;
-    width: 90px;
+    color: #fff;
+    font-family: 'Fira', sans-serif;
+    width: 25%;
     height: 50px;
     background: transparent;
     border: none;
-    font-size: 1.3em;
+    font-size: 1.1em;
     padding: 5px;
-    margin-top: 10px;
-    opacity: .9;
+    opacity: 0.8;
     cursor: pointer;
     text-transform: uppercase;
 }
 
 .btn:hover {
+  color: #FCEFBD;
   font-weight: 900;
   letter-spacing: 1px;
 }
 
 /*CHECK GROUP*/
 #checkGroup {
-    width: 91%;
-    margin-left: 3%;
+    margin: 0 auto;
+    margin-top: 2%;
     padding: 30px;
-    position: fixed;
-    top: 40%;
-    background: rgba(0, 0, 0, .2);
+    position: relative;
+    background: rgba(0, 0, 0, .4);
 
+}
+
+#checkGroup h3{
+    opacity: .8;
 }
 
 /*check-in and check-out input*/
@@ -118,7 +116,7 @@ and open the template in the editor.
 }
 /*drop-down list group*/
 .ddlGroup{
-    font-family: 'Madras', sans-serif;
+    font-family: 'Fira', sans-serif;
     width:250px;
     height:50px;
     background: rgba(255, 255, 255, .3);
@@ -142,11 +140,22 @@ ul li {
     display: inline-block;
 }
 
+#error{
+    color: #fff;
+    font-size: 1.1em;
+    position: relative;
+    right: 0;
+    bottom: 35%;
+    left: 0;
+    text-align: center;
+    opacity:.8;
+}
+
 #message{
-    color: #f01414;
-    font-weight: bold;
+    color: #fff;
+    opacity: .8;
     font-size: 1.2em;
-    position: absolute;
+    position: relative;
     right: 0;
     bottom: 35%;
     left: 0;

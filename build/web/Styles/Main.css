@@ -7,29 +7,15 @@ and open the template in the editor.
     Created on : Mar 26, 2016, 10:32:23 AM
     Author     : Trisha
 */
-/*FONTS*/
-/*menu and header h2*/
-@font-face{
-    font-family: 'Soria';
-    src: url(../fonts/Soria.ttf) format('truetype');
-}
-/*header h1*/
-@font-face{
-    font-family: 'Arnetalia';
-    src: url(../fonts/Arnetalia.ttf) format('truetype');
-}
-/*body*/
-@font-face{
-    font-family: 'Madras';
-    src: url(../fonts/Madras.otf) format('opentype');
-}
+
+@import url(fonts.css);
 
 /* BODY*/
 body {  
-    color:#FCEFBD;
+    color:#fff;
     margin: 0;
     padding: 0;
-    font-family: 'Madras', sans-serif;
+    font-family: 'Fira', sans-serif;
     text-align: center;
     background-color: #fff;
     background-repeat: repeat, no-repeat;
@@ -44,33 +30,35 @@ body {
 
 /* HEADER*/
 #headerGroup{
-    top: 15%;
-    left: 5%;
-    position: fixed;
+    margin: 0 auto;
+    margin-top: 7%;
+    position: relative;
+    width: 100%;
 
 }
 
 /*h1*/
 #headerGroup h1{
-    font-family: 'Arnetalia', cursive;
-    text-shadow:0px 6px 1px #ed2f2f;
-    margin: 0 0 23px 0;
-    font-size: 8em;
-    opacity: 0.9;
-    
+    color: #fff;
+    font-family: 'Furgatorio', serif;
+    text-shadow:0px 6px 1px #000;
+    margin: 0 auto;
+    font-size: 11.5em;
+    font-weight: normal;
+    letter-spacing: 2px;
+    opacity: .8;
+
 }
 
 /*h2*/
 #headerGroup h2{
-    font-family: 'Soria', serif;
+    color: #fff;
+    font-family: 'Fira', sans-serif;
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 1.3em;
-    opacity: 0.9;
-    position: fixed;
-    top: 31%;
-    left: 13%;
+    font-size: 1.4em;
+    margin-top: -1%;
 }
 /*h3*/
 h3{

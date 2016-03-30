@@ -73,15 +73,15 @@
                             <input class="btns" type="submit" name="btn" value="Log Out"/>
                         </li>
                     </ul>
-                </div>
+                    <div id="message">
+                        <%
+                            if (request.getAttribute("msg") != null) {
+                                out.print(request.getAttribute("msg"));
+                            }
+                        %>
+                    </div>
+                </div>     
             </form>  
-        </div>
-        <div id="message">
-            <%
-                if (request.getAttribute("msg") != null) {
-                    out.print(request.getAttribute("msg"));
-                }
-            %>
         </div>
         <!--Footer-->
         <jsp:include page="//_footer.jsp"/>

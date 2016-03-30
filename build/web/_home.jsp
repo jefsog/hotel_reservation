@@ -11,6 +11,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    session.invalidate();
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,20 +26,25 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" defer></script>
         <script type="text/javascript" src="js/home.js" defer></script>
     </head>
-    <body style="background-image: url(images/pattern.png), url(images/santorini_sunset.jpg); ">
+    <body style="background-image: url(images/pattern.png), url(images/santorini_sunset_2.jpg); ">
         <!--Header-->
         <jsp:include page="_header.jsp"/>
         <!--Navigation-->
         <jsp:include page="_navigation.jsp"/>
-
-
-
         <!--Login-->
         <div id="loginGroup">
-            <form method="post" action="Login">
+            <form method="post" action="Login_Signup">
                 <input class="txtGroup" type="text" name="user_name" placeholder="username">
                 <input class="txtGroup" type="password" name="password" placeholder="password">
-                <input type="submit" name="Login" value="Login" class="btn" id="btnLogIn">
+                <input type="submit" name="submit" value="Login" class="btn" id="btnLogIn">
+                <input type="submit" name="submit" value="Sign up" class="btn" id="btnSignUp">
+                <div id="error">
+                    <%
+                        if (request.getAttribute("error") != null) {
+                            out.print(request.getAttribute("error"));
+                        }
+                    %>
+                </div>
             </form>
         </div>
 
@@ -77,15 +85,15 @@
                         </select>                 
                     </li>
                 </ul>        
-                <input type="submit" name="btnCheck" value="Check Availability" class="btn" id="btnCheckAvail"/><br/>           
+                <input type="submit" name="btnCheck" value="Check Availability" class="btn" id="btnCheckAvail"/><br/>  
+                <div id="message">
+                    <%
+                        if (request.getAttribute("msg") != null) {
+                            out.print(request.getAttribute("msg"));
+                        }
+                    %>
+                </div>
             </form>
-        </div>
-        <div id="message">
-            <%
-                if (request.getAttribute("msg") != null) {
-                    out.print(request.getAttribute("msg"));
-                }
-            %>
         </div>
         <!--Footer-->
         <jsp:include page="_footer.jsp"/>

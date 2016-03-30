@@ -34,7 +34,7 @@
                     <label>One Queen</label>                     
                 </div>
 
-                <div id="radRoomNum">
+                <div class="txt">
                     <h3>Room Number:</h3>       
                     <input class="txtGroup" type="number" name="txtRoomNum"/><br/> 
                 </div>

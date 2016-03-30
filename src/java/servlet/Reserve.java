@@ -36,47 +36,42 @@ public class Reserve extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         int uID = (int) session.getAttribute("cID");
-        String starting = request.getParameter("txtArrivalDate");
-        String ending = request.getParameter("txtDepartureDate");
+        String starting = request.getParameter("txtCheckIn");
+        String ending = request.getParameter("txtCheckOut");
         String rType = request.getParameter("Bed");
-        int rQuantity = Integer.parseInt(request.getParameter("ddlNoOfPeople"));
-        String spRequest = request.getParameter("txtSpecialRequests");
+        String rQuantity = request.getParameter("ddlNumRooms");
+        String spRequest = request.getParameter("txtSpecialRequests").trim();
+
         int i = 0;
         int roomAvailability;
-        String msg;
+        String msg = null;
         try {
             Database db = Database.getDatabase();
             roomAvailability = db.getAvailableRoomQuantity(starting, ending, rType);
-            if (rQuantity <= roomAvailability) {
-                i = db.insertReservation(uID, starting, ending, rType, rQuantity, spRequest);
-                if (rQuantity > roomAvailability) {
+            if (!starting.isEmpty() && !ending.isEmpty() && rQuantity != null) {
+                int rQty = Integer.parseInt(rQuantity);
+                if (rQty <= roomAvailability) {
+                    i = db.insertReservation(uID, starting, ending, rType, rQty, spRequest);
+                    if (rQty > roomAvailability) {
+                        msg = "From " + starting + " to " + ending + "\n"
+                                + rQuantity + " rooms selected. Only " + roomAvailability + " " + rType + " rooms are available.";
+                    }
+                }
+                if (rQty > roomAvailability) {
                     msg = "From " + starting + " to " + ending + "\n"
-                            + rQuantity + " rooms selected. Only " + roomAvailability + " " + rType + " rooms are available.";
-                    request.setAttribute("msg", msg);
-                    RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+                            + rQuantity + " rooms selected. No available " + rType + " rooms. Please select another room type.";
+                }
+                if (i == 1) {
+                    RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
                     rd.forward(request, response);
                 }
-            }
-//            } else {
-//                //return error information;
-//                msg = "From " + starting + " to " + ending + " , " + roomAvailability + " " + rType + "  rooms are available.";
-//                request.setAttribute("msg", msg);
-//                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
-//                rd.forward(request, response);
-//            }
-            if (rQuantity > roomAvailability) {
-                msg = "From " + starting + " to " + ending + "\n"
-                        + rQuantity + " rooms selected. No available " + rType + " rooms. Please select another room type.";
-                request.setAttribute("msg", msg);
-                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
-                rd.forward(request, response);
-            }
-            if (i == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
-                rd.forward(request, response);
             } else {
-                //return error information
+                msg = "Please enter empty fields.";
             }
+
+            request.setAttribute("msg", msg);
+            RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+            rd.forward(request, response);
 
         } catch (Exception e) {
 
