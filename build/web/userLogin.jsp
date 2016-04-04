@@ -11,19 +11,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="Styles/main.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/nav.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/loginForm.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_main.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_menu.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_loginRegister.css" type="text/css"/>
     </head>
-    <body style="background-image: url(images/natural_paper.png); ">
+    <body>
         <!--Navigation-->
-        <jsp:include page="_navigation.jsp"/>
+        <jsp:include page="_menu.jsp"/>
 
-        <div id="header">
-            <h1>Please Enter Login Credentials</h1>
-        </div>
-        <div id="frmGroup">
-            <form method="post" action="Login">
+        <div class="content fadeIn animated">
+            <h2 class="slideInDown animated">-Please enter login credentials-</h2>
+            <div id="message">
+                <% if (request.getAttribute("error") != null) {
+                        out.print(request.getAttribute("error"));
+                    }%>
+            </div>
+            <form class = "frm" method="post" action="Login">
 
                 <div class="txt">
                     <label>Username: </label>
@@ -33,13 +36,8 @@
                     <label>Password: </label> 
                     <input class="txtGroup" type="password" name="password">
                 </div>
-                <input class="btn" type="submit" name="submit" value="Login">
+                <input class="btns" type="submit" name="submit" value="Login">
             </form>
-            <div id="message">
-                <% if (request.getAttribute("error") != null) {
-                        out.print(request.getAttribute("error"));
-                    }%>
-            </div>
         </div>
 
         <!--Footer-->

@@ -41,47 +41,45 @@ public class AddRoom extends HttpServlet {
             _DB db = new _DB();
             Room r = new Room();
             String rmType = db.searchRoomName(request.getParameter("radRoom"));
+            String rmlevel = request.getParameter("radLevel");
             String rmNum = request.getParameter("txtRoomNum").trim();
-            String smoke = request.getParameter("radSmoke");
-            String specs = request.getParameter("txtSpecs");
-            String rmSpecs = smoke + "\n" + specs;
+            String rmSpecs = request.getParameter("radSmoke");
             String add = request.getParameter("btnAdd");
+            String msg;
+            RequestDispatcher rd;
+            int finalNum;
 
-            if (rmNum.isEmpty()) {
-                inputError(request, response, "A room number must be entered");
+            if (!rmNum.isEmpty()) {
+
+                if (add != null && rmType != null) {
+                    int tmpLvl = Integer.parseInt(rmlevel);
+                    int tmpNum = Integer.parseInt(rmNum);
+                    if (rmlevel.equals("100")) {
+                        finalNum = tmpLvl + tmpNum;
+                    } else if (rmlevel.equals("200")) {
+                        finalNum = tmpLvl + tmpNum;
+                    } else {
+                        finalNum = tmpLvl + tmpNum;
+                    }
+
+                    r.setRoomID(finalNum);
+                    r.getRt().setRoomName(rmType);
+                    r.setRoomSpec(rmSpecs);
+                    db.addRoom(r);
+                }
+            } else {
+                msg = "Please enter empty fields";
+                request.setAttribute("msg", msg);
+                rd = request.getRequestDispatcher("adminAddRoom.jsp");
+                rd.forward(request, response);
             }
-            if (add != null && rmType != null) {
-                int num = Integer.parseInt(rmNum);
-                r.setRoomID(num);
-                r.getRt().setRoomName(rmType);
-                r.setRoomSpec(rmSpecs);
-                db.addRoom(r);
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("admin/adminViewRooms.jsp");
+
+            rd = request.getRequestDispatcher("adminViewRooms.jsp");
             rd.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    private void inputError(HttpServletRequest req, HttpServletResponse res, String msg) {
-        try {
-            try (PrintWriter out = res.getWriter()) {
-                res.setContentType("text/html");
-                out.println("<html><head>"
-                        + " <title>Hotel</title></head><body>");
-                out.println("<div id='warning'>" + msg + "</div>");
-                ServletContext sc = getServletConfig().getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher("/admin/adminAddRoom.jsp");
-                rd.include(req, res);
-                out.println("</body></html>");
-            }
-        } catch (ServletException | IOException e1) {
-            e1.printStackTrace();
-        } finally {
-
-        }
     }
 
     /**

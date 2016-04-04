@@ -55,6 +55,10 @@ public final class _005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
+
+    session.invalidate();
+
+      out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
@@ -67,13 +71,7 @@ public final class _005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"//code.jquery.com/ui/1.11.4/jquery-ui.js\" defer></script>\n");
       out.write("        <script type=\"text/javascript\" src=\"js/home.js\" defer></script>\n");
       out.write("    </head>\n");
-      out.write("    <body style=\"background-image: url(images/pattern.png), url(images/santorini_sunset.jpg); \">\n");
-      out.write("        ");
-
-            session = request.getSession();
-            String username = session.getAttribute("username").toString();
-        
-      out.write("\n");
+      out.write("    <body style=\"background-image: url(images/pattern.png), url(images/santorini_sunset_2.jpg); \">\n");
       out.write("        <!--Header-->\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "_header.jsp", out, false);
@@ -82,17 +80,22 @@ public final class _005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "_navigation.jsp", out, false);
       out.write("\n");
-      out.write("        \n");
-      out.write("        <h1>");
-      out.print(username);
-      out.write("</h1>\n");
       out.write("        <!--Login-->\n");
       out.write("        <div id=\"loginGroup\">\n");
-      out.write("            <form method=\"post\" action=\"Login\">\n");
+      out.write("            <form method=\"post\" action=\"Login_Signup\">\n");
       out.write("                <input class=\"txtGroup\" type=\"text\" name=\"user_name\" placeholder=\"username\">\n");
       out.write("                <input class=\"txtGroup\" type=\"password\" name=\"password\" placeholder=\"password\">\n");
-      out.write("                <input type=\"submit\" name=\"Login\" value=\"Login\" class=\"btn\" id=\"btnLogIn\">\n");
-      out.write("                <input type=\"submit\" name=\"Sign up\" value=\"Sign up\" class=\"btn\" id=\"btnSignUp\">\n");
+      out.write("                <input type=\"submit\" name=\"submit\" value=\"Login\" class=\"btn\" id=\"btnLogIn\">\n");
+      out.write("                <input type=\"submit\" name=\"submit\" value=\"Sign up\" class=\"btn\" id=\"btnSignUp\">\n");
+      out.write("                <div id=\"error\">\n");
+      out.write("                    ");
+
+                        if (request.getAttribute("error") != null) {
+                            out.print(request.getAttribute("error"));
+                        }
+                    
+      out.write("\n");
+      out.write("                </div>\n");
       out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("\n");
@@ -110,11 +113,11 @@ public final class _005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                    <li>\n");
       out.write("                        <select name=\"ddlNumRooms\" class=\"ddlGroup\">\n");
-      out.write("                            <option value=\"\" selected disabled>Number of rooms</option>\n");
-      out.write("                            <option value=\"1\">1</option>\n");
-      out.write("                            <option value=\"2\">2</option>\n");
-      out.write("                            <option value=\"3\">3</option>\n");
-      out.write("                            <option value=\"4\">4</option>\n");
+      out.write("                            <option class=\"opt\" value=\"\" selected disabled>Number of rooms</option>\n");
+      out.write("                            <option class=\"opt\" value=\"1\">1</option>\n");
+      out.write("                            <option class=\"opt\" value=\"2\">2</option>\n");
+      out.write("                            <option class=\"opt\" value=\"3\">3</option>\n");
+      out.write("                            <option class=\"opt\" value=\"4\">4</option>\n");
       out.write("                        </select>\n");
       out.write("\n");
       out.write("                    </li>\n");
@@ -142,17 +145,17 @@ public final class _005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </select>                 \n");
       out.write("                    </li>\n");
       out.write("                </ul>        \n");
-      out.write("                <input type=\"submit\" name=\"btnCheck\" value=\"Check Availability\" class=\"btn\" id=\"btnCheckAvail\"/><br/>           \n");
-      out.write("            </form>\n");
-      out.write("        </div>\n");
-      out.write("        <div id=\"message\">\n");
-      out.write("            ");
+      out.write("                <input type=\"submit\" name=\"btnCheck\" value=\"Check Availability\" class=\"btn\" id=\"btnCheckAvail\"/><br/>  \n");
+      out.write("                <div id=\"message\">\n");
+      out.write("                    ");
 
-                if (request.getAttribute("msg") != null) {
-                    out.print(request.getAttribute("msg"));
-                }
-            
+                        if (request.getAttribute("msg") != null) {
+                            out.print(request.getAttribute("msg"));
+                        }
+                    
       out.write("\n");
+      out.write("                </div>\n");
+      out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("        <!--Footer-->\n");
       out.write("        ");

@@ -14,20 +14,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Change Reservation</title>
-        <link rel="stylesheet" href="Styles/adminAdd_Edit.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/userForm.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_main.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/userMain.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/user.css" type="text/css"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js" defer></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" defer></script>
         <script type="text/javascript" src="js/home.js" defer></script>
     </head>
-    <body style="background-image: url(images/natural_paper.png); ">
+    <body>
 
-        <div id="header">
-            <h1>Change Reservation</h1>
-        </div>
-        <div id="frmGroup">
-            <form action="Update" method="get">        
+        <!--user menu-->
+        <jsp:include page="userMenu.jsp"/>
+
+        <div class="content fadeIn animated">
+            <h2 class="slideInDown animated">-Change Reservation-</h2>
+            <form class="frm" action="Update" method="get">        
                 <%
                     int rID = Integer.parseInt((String) request.getAttribute("rID"));
                     session.setAttribute("rID", rID);
@@ -41,9 +43,10 @@
                         }
                     }
                 %>
-
-                <h3>Reservation ID</h3>
-                <label><%=rID%></label><br/>
+                <div class="idGroup">
+                    <h3>Reservation ID</h3>
+                    <label class="rmID"><%=rID%></label>
+                </div>
                 <%
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd");
 
@@ -54,8 +57,7 @@
 
                 <input class="txtGroup" name="txtCheckOut" type="text" id="checkOut" value="<%=res.ending%>"/>
 
-                <div id ="ddlRoom">
-                    <h3>Number of room</h3>
+                    <h3>Number of rooms</h3>
                     <%
                         int n = res.rQuantity;
                         String s1 = null, s2 = null, s3 = null, s4 = null;
@@ -73,14 +75,13 @@
                         }
                     %>
 
-                    <select name="ddlNumRooms" class="ddlGroup">
-                        <option value="1" <%=s1%>>1</option>
-                        <option value="2" <%=s2%>>2</option>
-                        <option value="3" <%=s3%>>3</option>
-                        <option value="4" <%=s4%>>4</option>
+                    <select id="ddl" name="ddlNumRooms" class="ddlGroup">
+                        <option class="opt" value="1" <%=s1%>>1</option>
+                        <option class="opt" value="2" <%=s2%>>2</option>
+                        <option class="opt" value="3" <%=s3%>>3</option>
+                        <option class="opt" value="4" <%=s4%>>4</option>
 
                     </select>  
-                </div>
                 <%
                     String c1 = null, c2 = null, c3 = null;
                     String rt = res.rType;
@@ -98,22 +99,22 @@
                 <div id="typeGroup">
                     <h3>Room type</h3>
                     <input id="radKing" type="radio" name="Bed" value="King" <%=c1%> />
-                    <label>King</label>
+                    <label class="lbl">King</label>
 
                     <input id="radTQueen" type="radio" name="Bed" value="Two Queens" <%=c2%> />
-                    <label>Two Queens</label>
+                    <label class="lbl">Two Queens</label>
 
                     <input id="radOQueen" type="radio" name="Bed" value="One Queen" <%=c3%>/>
-                    <label>One Queen</label>
+                    <label class="lbl">One Queen</label>
                 </div>
-                    
+
                 <div id="specialReqs">
-                    <h2>Special requests</h2>
+                    <h3>Special requests</h3>
                     <textarea name="txtSpecialRequests" rows="2" cols="20"  id="txtSpecialRequests"><%=res.spRequest%>
                     </textarea>
                 </div>
                 <%--=res.spRequest--%>
-                <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="btn" />
+                <input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="btns" />
             </form>
         </div>
     </body>

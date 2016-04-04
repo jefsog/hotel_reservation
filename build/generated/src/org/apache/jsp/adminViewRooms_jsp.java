@@ -58,55 +58,78 @@ public final class adminViewRooms_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>Rooms</title>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"Styles/main.css\" type=\"text/css\"/>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"Styles/user.css\" type=\"text/css\"/>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        <h2>Rooms</h2>\r\n");
-      out.write("        <form method=\"GET\" name=\"viewRooms\" action=\"ViewRooms\">\r\n");
-      out.write("            <table border=\"1\">\r\n");
-      out.write("                <tr>\r\n");
-      out.write("                    <th class=\"thead\"></th>\r\n");
-      out.write("                    <th class=\"thead\">Room Number</th>\r\n");
-      out.write("                    <th class=\"thead\">Room Type</th>\r\n");
-      out.write("                    <th class=\"thead\">Specification</th>\r\n");
-      out.write("                </tr> \r\n");
+      out.write("         <!--admin menu-->\r\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "adminMenu.jsp", out, false);
       out.write("\r\n");
-      out.write("                ");
-  
-                    _DB db = new _DB();
-                    List<Room> list = db.getRoomList();           
-                        for (Room r : list) {
-                            int id = r.getRoomID();
-                            String nm = r.getRt().getRoomName();
-                            String spec = r.getRoomSpec();
-                        
-                
       out.write("\r\n");
-      out.write("                <tr>\r\n");
-      out.write("                    <td><input type=\"radio\" name=\"radRoom\" value=\"");
+      out.write("        <!--room list-->\r\n");
+      out.write("        <div id=\"viewRoom\" class=\"panel\">  \r\n");
+      out.write("            <div class=\"content slideInDown animated\">\r\n");
+      out.write("                <h2>-Rooms-</h2>\r\n");
+      out.write("                <div class=\"message\">\r\n");
+      out.write("                    ");
+
+                        if (request.getAttribute("msg") != null) {
+                            out.print(request.getAttribute("msg"));
+                        }
+                    
+      out.write("\r\n");
+      out.write("                </div>  \r\n");
+      out.write("                <form method=\"GET\" name=\"viewRooms\" action=\"ViewRooms\">\r\n");
+      out.write("                    <table>\r\n");
+      out.write("                        <thead>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <th class=\"thead\"></th>\r\n");
+      out.write("                                <th class=\"thead\">Room Number</th>\r\n");
+      out.write("                                <th class=\"thead\">Room Type</th>\r\n");
+      out.write("                                <th class=\"thead\">Specification</th>\r\n");
+      out.write("                            </tr> \r\n");
+      out.write("                        </thead>\r\n");
+      out.write("                        <tbody>\r\n");
+      out.write("                            ");
+
+                                _DB db = new _DB();
+                                List<Room> list = db.getRoomList();
+                                for (Room r : list) {
+                                    int id = r.getRoomID();
+                                    String nm = r.getRt().getRoomName();
+                                    String spec = r.getRoomSpec();
+
+                            
+      out.write("\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <td><input type=\"radio\" name=\"radRoom\" value=\"");
       out.print(id);
       out.write("\"></td>\r\n");
-      out.write("                    <td>");
+      out.write("                                <td>");
       out.print(id);
       out.write("</td>\r\n");
-      out.write("                    <td>");
+      out.write("                                <td>");
       out.print(nm);
       out.write("</td>\r\n");
-      out.write("                    <td>");
+      out.write("                                <td>");
       out.print(spec);
       out.write("</td>       \r\n");
-      out.write("                </tr>\r\n");
-      out.write("                ");
+      out.write("                            </tr>\r\n");
+      out.write("                            ");
 }
       out.write("\r\n");
+      out.write("                        </tbody>\r\n");
+      out.write("                    </table>\r\n");
       out.write("\r\n");
-      out.write("            </table>\r\n");
-      out.write("            <input type=\"submit\" name=\"btn\" value=\"Add Room\"/>\r\n");
-      out.write("            <input type=\"submit\" name=\"btn\" value=\"Edit Room\"/>\r\n");
-      out.write("            <input type=\"submit\" name=\"btn\" value=\"Delete Room\"/>\r\n");
-      out.write("            <input type=\"submit\" name=\"btn\" value=\"View Reservations\"/>\r\n");
-      out.write("            \r\n");
-      out.write("        </form>              \r\n");
+      out.write("                    <!--buttons-->   \r\n");
+      out.write("                    <input class=\"btns\" type=\"submit\" name=\"btn\" value=\"Edit Room\"/>\r\n");
+      out.write("                    <input class=\"btns\" type=\"submit\" name=\"btn\" value=\"Delete Room\"/>             \r\n");
+      out.write("                </form>  \r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("        <!--room list-->\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

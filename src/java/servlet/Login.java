@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 //                        rd = request.getRequestDispatcher("userRegister.jsp");
 //                        rd.forward(request, response);                   
                         if (cID == 9999) {
-                            rd = request.getRequestDispatcher("/admin/adminViewRooms.jsp");
+                            rd = request.getRequestDispatcher("adminViewRooms.jsp");
                             rd.forward(request, response);
                         } else {
                             HttpSession session = request.getSession();

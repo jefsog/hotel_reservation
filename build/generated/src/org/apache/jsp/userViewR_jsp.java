@@ -75,7 +75,8 @@ public final class userViewR_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(username);
       out.write("</h1>\r\n");
       out.write("\r\n");
-      out.write("        <nav id=\"navGroup\">\r\n");
+      out.write("        <!--userMenu-->\r\n");
+      out.write("        <nav id=\"menuGroup\">\r\n");
       out.write("            <ul>\r\n");
       out.write("                <li>\r\n");
       out.write("                    <a href=\"userViewR.jsp\">My Reservation</a>\r\n");
