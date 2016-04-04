@@ -44,6 +44,10 @@
         <servlet-name>Login_Signup</servlet-name>
         <servlet-class>_controller.Login_Signup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewReservationList</servlet-name>
+        <servlet-class>_controller.ViewReservationList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>Login_Signup</servlet-name>
         <url-pattern>/Login_Signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReservationList</servlet-name>
+        <url-pattern>/ViewReservationList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -51,21 +51,26 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <title>Login</title>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"Styles/main.css\" type=\"text/css\"/>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"Styles/nav.css\" type=\"text/css\"/>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"Styles/loginForm.css\" type=\"text/css\"/>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"Styles/_main.css\" type=\"text/css\"/>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"Styles/_menu.css\" type=\"text/css\"/>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"Styles/_loginRegister.css\" type=\"text/css\"/>\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body style=\"background-image: url(images/natural_paper.png); \">\r\n");
+      out.write("    <body>\r\n");
       out.write("        <!--Navigation-->\r\n");
       out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "_navigation.jsp", out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "_menu.jsp", out, false);
       out.write("\r\n");
       out.write("\r\n");
-      out.write("        <div id=\"header\">\r\n");
-      out.write("            <h1>Please Enter Login Credentials</h1>\r\n");
-      out.write("        </div>\r\n");
-      out.write("        <div id=\"frmGroup\">\r\n");
-      out.write("            <form method=\"post\" action=\"Login\">\r\n");
+      out.write("        <div class=\"content fadeIn animated\">\r\n");
+      out.write("            <h2 class=\"slideInDown animated\">-Please enter login credentials-</h2>\r\n");
+      out.write("            <div id=\"message\">\r\n");
+      out.write("                ");
+ if (request.getAttribute("error") != null) {
+                        out.print(request.getAttribute("error"));
+                    }
+      out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("            <form class = \"frm\" method=\"post\" action=\"Login\">\r\n");
       out.write("\r\n");
       out.write("                <div class=\"txt\">\r\n");
       out.write("                    <label>Username: </label>\r\n");
@@ -75,15 +80,8 @@ public final class userLogin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <label>Password: </label> \r\n");
       out.write("                    <input class=\"txtGroup\" type=\"password\" name=\"password\">\r\n");
       out.write("                </div>\r\n");
-      out.write("                <input class=\"btn\" type=\"submit\" name=\"submit\" value=\"Login\">\r\n");
+      out.write("                <input class=\"btns\" type=\"submit\" name=\"submit\" value=\"Login\">\r\n");
       out.write("            </form>\r\n");
-      out.write("            <div id=\"message\">\r\n");
-      out.write("                ");
- if (request.getAttribute("error") != null) {
-                        out.print(request.getAttribute("error"));
-                    }
-      out.write("\r\n");
-      out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("\r\n");
       out.write("        <!--Footer-->\r\n");

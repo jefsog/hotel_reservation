@@ -1,0 +1,135 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 26, 2016, 11:10:03 AM
+    Author     : Trisha
+*/
+/* NAVIGATION START*/
+#menuGroup{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
+    padding-top: 3%;
+    padding-bottom: 1%;
+}
+
+#menuGroup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: block;
+    zoom: 1;
+}
+#menuGroup ul:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#menuGroup ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+#menuGroup.align-right ul li {
+    float: right;
+}
+#menuGroup.align-center ul {
+    text-align: center;
+}
+#menuGroup ul li a {
+    color: #fff;
+    opacity: 0.9;
+    text-decoration: none;
+    display: block;
+    padding: 15px 25px;
+    font-family: 'Fira', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.7em;
+    position: relative;
+    -webkit-transition: color .25s;
+    -moz-transition: color .25s;
+    -ms-transition: color .25s;
+    -o-transition: color .25s;
+    transition: color .25s;
+}
+#menuGroup ul li a:hover {
+    color: #FCEFBD;
+}
+#menuGroup ul li a:hover:before {
+    width: 100%;
+}
+#menuGroup ul li a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -3px;
+    top: 19px;
+    height: 6px;
+    width: 6px;
+    background: #FCEFBD;
+    opacity: .5;
+}
+#menuGroup ul li a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background: #FCEFBD;
+    -webkit-transition: width .25s;
+    -moz-transition: width .25s;
+    -ms-transition: width .25s;
+    -o-transition: width .25s;
+    transition: width .25s;
+}
+#menuGroup ul li.last > a:after,
+#menuGroup ul li:last-child > a:after {
+    display: none;
+}
+#menuGroup ul li.active a {
+    color: #FCEFBD;
+}
+#menuGroup ul li.active a:before {
+    width: 100%;
+}
+#menuGroup.align-right li.last > a:after,
+#menuGroup.align-right li:last-child > a:after {
+    display: block;
+}
+#menuGroup.align-right li:first-child a:after {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    #menuGroup ul li {
+        float: none;
+        display: block;
+    }
+    #menuGroup ul li a {
+        width: 100%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border-bottom: 1px solid #FCEFBD;
+    }
+    #menuGroup ul li.last > a,
+    #menuGroup ul li:last-child > a {
+        border: 0;
+    }
+    #menuGroup ul li a:after {
+        display: none;
+    }
+    #menuGroup ul li a:before {
+        display: none;
+    }
+}
+

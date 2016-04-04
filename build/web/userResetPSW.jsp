@@ -11,18 +11,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Change Password</title>
-        <link rel="stylesheet" href="Styles/main.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/nav.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/loginForm.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_main.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/userMain.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/user.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/userLogin.css" type="text/css"/>
     </head>
-    <body style="background-image: url(images/natural_paper.png); ">
-        <div id="header">
-            <h1>Change Password</h1>
-        </div>
+    <body>
+        <!--user menu-->
+        <jsp:include page="userMenu.jsp"/>
 
-        <div id="frmGroup">
+        <div class="content fadeIn animated">
+            <h2 class="slideInDown animated">-Change Password-</h2>
 
-            <form action="ResetPSW" method="post">
+            <form class="frm" action="ResetPSW" method="post">
                 <%
                     String user_name = "";
 
@@ -35,18 +36,18 @@
                     <label>User ID:</label>
                     <div id="name"><%=user_name%></div>
                 </div>
-                
+
                 <div class="txt">
                     <label> New Password:</label>
                     <input class="txtGroup" type="password" name="password1">
                 </div>
-                
+
                 <div class="txt">
                     <label>Retype New Password: </label>
                     <input class="txtGroup" type="password" name="password2">
                 </div>
 
-                <input class="btn" type="submit" name="submit" value="reset">
+                <input class="btns" type="submit" name="submit" value="reset">
                 <div id="message">
                     <% if (request.getAttribute("error") != null) {
                             out.print(request.getAttribute("error"));
@@ -54,7 +55,5 @@
                 </div>
             </form>
         </div>  
-        <!--Footer-->
-        <jsp:include page="_footer.jsp"/>  
     </body>
 </html>

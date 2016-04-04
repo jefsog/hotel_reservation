@@ -49,7 +49,7 @@ public class Login_Signup extends HttpServlet {
                     cID = db.getUserID(usnm, psw);
                     if (isValid) {
                         if (cID == 9999) {
-                            rd = request.getRequestDispatcher("/admin/adminViewRooms.jsp");
+                            rd = request.getRequestDispatcher("adminViewRooms.jsp");
                             rd.forward(request, response);
                         } else {
                             HttpSession session = request.getSession();

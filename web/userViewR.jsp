@@ -18,30 +18,29 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%=username%></title>
-        <link rel="stylesheet" href="Styles/main.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/nav.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/adminVw.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_main.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/userMain.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/user.css" type="text/css"/>
     </head>
-    <body style="background-image: url(images/natural_paper.png); ">
-
-        <h1>Hello <%=username%></h1>
-
-        <nav id="navGroup">
-            <ul>
-                <li>
-                    <a href="userViewR.jsp">My Reservation</a>
+    <body>
+        <!--user menu-->
+        <div id="menuGroup">
+            <ul id="navigation">
+                <li class="menu-1 fadeInLeft animated">
+                    <a class="hvr-sweep-to-left" href="userViewR.jsp">My Reservation</a>
                 </li>
-                <li>
-                    <a href="userReserve.jsp">New Reservation</a>
+                <li class="menu-2 fadeInLeft animated">
+                    <a class="hvr-sweep-to-left" href="userReserve.jsp">New Reservation</a>
                 </li>
-                <li>
-                    <a href="userResetPSW.jsp">Change Password</a>
+                <li class="menu-3 fadeInLeft animated">
+                    <a class="hvr-sweep-to-left" href="userResetPSW.jsp">Change Password</a>
                 </li>
-                <li>
-                    <a href="_home.jsp">Log Out</a>
+                <li class="menu-4 fadeInLeft animated">
+                    <a class="hvr-sweep-to-left" href="_home.jsp">Log Out</a>
                 </li>
             </ul>
-        </nav>
+        </div>
+
 
         <!--Reservation -->
         <%
@@ -52,8 +51,9 @@
             ArrayList<ReservationJeff> reservations = db.getReservation(cID);
             session.setAttribute("reservations", reservations);
         %>
-        <div class="tableForm">
-            <h1>Reservations</h1>
+
+        <div class="content fadeIn animated">   
+            <h2 class="slideInUp animated">-Reservations-</h2>
             <form method="get" action="Change">
                 <table>
                     <thead>
@@ -105,8 +105,8 @@
         </div>
 
         <!--History --> 
-        <div class="tableForm">
-            <h1>History</h1>	
+        <div class="content fadeIn animated">   
+            <h2 class="slideInDown animated">-History-</h2>
             <table>
                 <thead>
                     <tr>

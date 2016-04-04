@@ -67,7 +67,7 @@ public class ConnectionPool {
         return conn;
     }
     
-    public void destroy(){
+    public static void destroy(){
         try{
             if(conn !=null){
                 conn.close();

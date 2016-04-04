@@ -25,8 +25,11 @@ public class _DB {
     private Connection con = null;
     private PreparedStatement pstmt = null;
     private ConnectionPool cp = null;
+    private ArrayList<ReservationJeff> reservationList;
+    private final ArrayList<ReservationJeff> searchResultList;
 
     public _DB() {
+        searchResultList = new ArrayList<>();
         cp = ConnectionPool.getInstance();
         con = ConnectionPool.getConn();
     }
@@ -70,7 +73,6 @@ public class _DB {
     }
 
     public void updateRoom(Room r) throws SQLException {
-
         String qUpd = "UPDATE hroom SET tname=?, specification = ? WHERE rid = ?";
         pstmt = con.prepareStatement(qUpd);
         pstmt.setString(1, r.getRt().getRoomName());
@@ -138,104 +140,128 @@ public class _DB {
         return list;
     }
 
-    public List<ReservationJeff> getReservationList() throws SQLException {
-        List<ReservationJeff> list = new ArrayList<>();
-        String qSel = "SELECT res.RSID, res.CID, res.STARTING, res.ENDING, res.TNAME, res.QUANTITY, rmTyp.PRICE, res.COMMENTS "
-                + "FROM hreservation res JOIN hroomtype rmTyp "
-                + "ON res.TNAME = rmTyp.TNAME "
-                + "ORDER BY STARTING DESC";
+    private final String qReservList = "SELECT res.RSID, rm.RID, res.CID, res.STARTING, res.ENDING, res.TNAME, res.QUANTITY, rmTyp.PRICE, res.COMMENTS "
+            + "FROM hreservation res JOIN hroomtype rmTyp "
+            + "ON res.TNAME = rmTyp.TNAME "
+            + "JOIN hroom rm "
+            + "ON rmTyp.TNAME = rm.TNAME ";
+    
+    private final String orderBy = "ORDER BY res.RSID";
+    private ReservationJeff resJ;
+    
+    public ArrayList<ReservationJeff> getReservationList() throws SQLException {
+        reservationList = new ArrayList<>();
+        String qSel = qReservList + " " + orderBy;
         pstmt = con.prepareStatement(qSel);
         ResultSet rs = pstmt.executeQuery();
         if (rs != null) {
             while (rs.next()) {
-                ReservationJeff r = new ReservationJeff();
-                r.rID = rs.getInt("RSID");
-                r.uID = rs.getInt("CID");
-                r.starting = rs.getDate("STARTING");
-                r.ending = rs.getDate("ENDING");
-                r.rType = rs.getString("TNAME");
-                r.rQuantity = rs.getInt("QUANTITY");
-                r.spRequest = rs.getString("COMMENTS");
-                r.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
-                list.add(r);
+                resJ = new ReservationJeff();
+                resJ.rID = rs.getInt("RSID");
+                resJ.room.setRoomID(rs.getInt("RID"));
+                resJ.uID = rs.getInt("CID");
+                resJ.starting = rs.getDate("STARTING");
+                resJ.ending = rs.getDate("ENDING");
+                resJ.rType = rs.getString("TNAME");
+                resJ.rQuantity = rs.getInt("QUANTITY");
+                resJ.spRequest = rs.getString("COMMENTS");
+                resJ.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
+                reservationList.add(resJ);
             }
         }
-        return list;
+        return reservationList;
+
     }
     
-    /*MODIFIED QUERY FOR INSERT RESERVATION, AND CHECK AVAILABLE ROOMS*/
-    /*public int insertReservation(int cID, String starting, String ending,
-            String rType, int rQuantity, String spRequest) {
-        String sql = "insert into hreservation "
-                + "values(res_sequence.nextval, ?, TO_DATE(?, 'DD-MON-YY'), TO_DATE(?, 'DD-MON-YY'), ?, ?, ?)";
-        int i;
-        ResultSet rs;
-        try {
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, cID);
-            pstmt.setString(2, starting);
-            pstmt.setString(3, ending);
-            pstmt.setString(4, rType);
-            pstmt.setInt(5, rQuantity);
-            if (spRequest.equals("")) {
-                spRequest = null;
-            }
-            pstmt.setString(6, spRequest);
-
-            i = pstmt.executeUpdate();
-        } catch (Exception e) {
-            i = -1;
-        }
-        return i;  //if succeed, return 1, else return -1;
+    public ArrayList<ReservationJeff> getSearchResultList(){
+        return searchResultList;
     }
 
-    public int getRoomQty(String type) throws SQLException {
-        int qty = 0;
-
-        String qSel = "SELECT * FROM hroom WHERE tname = ?";
+    public void setReservationListByDate(String starting, String ending) throws SQLException {
+        String qSel = qReservList + " "
+                + "WHERE (res.starting >= TO_DATE(?, 'DD-MON-YY') AND res.starting <= TO_DATE(?, 'DD-MON-YY') "
+                + "OR res.ending >= TO_DATE(?, 'DD-MON-YY') AND res.ending <= TO_DATE(?, 'DD-MON-YY')) "
+                + orderBy;
         pstmt = con.prepareStatement(qSel);
-        pstmt.setString(1, type);
+        pstmt.setString(1, starting);
+        pstmt.setString(2, ending);
+        pstmt.setString(3, starting);
+        pstmt.setString(4, ending);
         ResultSet rs = pstmt.executeQuery();
-
         if (rs != null) {
             while (rs.next()) {
-                qty++;
+                resJ = new ReservationJeff();
+                resJ.rID = rs.getInt("RSID");
+                resJ.room.setRoomID(rs.getInt("RID"));
+                resJ.uID = rs.getInt("CID");
+                resJ.starting = rs.getDate("STARTING");
+                resJ.ending = rs.getDate("ENDING");
+                resJ.rType = rs.getString("TNAME");
+                resJ.rQuantity = rs.getInt("QUANTITY");
+                resJ.spRequest = rs.getString("COMMENTS");
+                resJ.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
+                searchResultList.add(resJ);
             }
         }
-        return qty;
     }
 
-    public int occupiedRoomQty(String arrival, String depart, String type) {
-        int i = 0;
-        String qSel = "SELECT quantity FROM hreservation "
-                + "WHERE (starting >= TO_DATE(?, 'DD-MON-YY') AND starting <= TO_DATE(?, 'DD-MON-YY') "
-                + "OR ending >= TO_DATE(?, 'DD-MON-YY') AND ending <= TO_DATE(?, 'DD-MON-YY')) AND tname = ?";
-        ResultSet rs;
-        try {
-            pstmt = con.prepareStatement(qSel);
-            pstmt.setString(1, arrival);
-            pstmt.setString(2, depart);
-            pstmt.setString(3, arrival);
-            pstmt.setString(4, depart);
-            pstmt.setString(5, type);
-            rs = pstmt.executeQuery();
-            if (rs != null) {
-                while (rs.next()) {
-                    i += rs.getInt(1);
-
-                }
+    public void setReservationListByPrice(double price) throws SQLException {
+        String qSel = qReservList + " "
+                + "WHERE rmTyp.PRICE = ? "
+                + orderBy;
+        pstmt = con.prepareStatement(qSel);
+        pstmt.setDouble(1, price);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs != null) {
+            while (rs.next()) {
+                resJ = new ReservationJeff();
+                resJ.rID = rs.getInt("RSID");
+                resJ.room.setRoomID(rs.getInt("RID"));
+                resJ.uID = rs.getInt("CID");
+                resJ.starting = rs.getDate("STARTING");
+                resJ.ending = rs.getDate("ENDING");
+                resJ.rType = rs.getString("TNAME");
+                resJ.rQuantity = rs.getInt("QUANTITY");
+                resJ.spRequest = rs.getString("COMMENTS");
+                resJ.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
+                searchResultList.add(resJ);
             }
-
-        } catch (SQLException ex) {
-            i = -1;
         }
-        return i;
     }
 
-    public int getAvailableRoomQty(String arrival, String depart, String rmType) throws SQLException {
-        int totalQty = getRoomQty(rmType);
-        int occupiedRm = occupiedRoomQty(arrival, depart, rmType);
-        return totalQty - occupiedRm;
-    }*/
-
+    public void setReservationListByRoomLevel(String level) throws SQLException {
+        char lvl;
+        switch (level) {
+            case "1":
+                lvl =  '1';
+                break;
+            case "2":
+                lvl = '2';
+                break;
+            default:
+                lvl = '3';
+                break;
+        }
+        String qSel = qReservList + " "
+                + "WHERE rm.RID LIKE '" + lvl + "%' "
+                + orderBy;
+     
+        pstmt = con.prepareStatement(qSel);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs != null) {
+            while (rs.next()) {
+                resJ = new ReservationJeff();
+                resJ.rID = rs.getInt("RSID");
+                resJ.room.setRoomID(rs.getInt("RID"));
+                resJ.uID = rs.getInt("CID");
+                resJ.starting = rs.getDate("STARTING");
+                resJ.ending = rs.getDate("ENDING");
+                resJ.rType = rs.getString("TNAME");
+                resJ.rQuantity = rs.getInt("QUANTITY");
+                resJ.spRequest = rs.getString("COMMENTS");
+                resJ.room.getRt().setRoomPrice(rs.getDouble("PRICE"));
+                searchResultList.add(resJ);
+            }
+        }
+    }
 }
