@@ -31,48 +31,53 @@ public class Register extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usnm = request.getParameter("user_name");
-        String psw1 = request.getParameter("password1");
-        String psw2 = request.getParameter("password2");
+        String usnm = request.getParameter("user_name").trim();
+        String psw1 = request.getParameter("password1").trim();
+        String psw2 = request.getParameter("password2").trim();
         RequestDispatcher rd;
-        if(psw1.equals(psw2)){ //I mistakely used '==' instead of 'equals'
-            try{
-                Database db = Database.getDatabase();
-                int i = db.addUser(usnm, psw2);
-                if(i == 1){
-                    rd = request.getRequestDispatcher("userLogin.jsp");
-                    rd.forward(request,response);
-                }else{
-                    request.setAttribute("error", "Registration fails, try again.");
-                    rd = request.getRequestDispatcher("userRegister.jsp");
-                    rd.forward(request,response);
+        String error = null;
+        if (!usnm.isEmpty() && !psw1.isEmpty() && !psw2.isEmpty()) {
+            if (psw1.equals(psw2)) { //I mistakely used '==' instead of 'equals'
+                try {
+                    Database db = Database.getDatabase();
+                    int i = db.addUser(usnm, psw2);
+                    if (i == 1) {
+                        rd = request.getRequestDispatcher("userLogin.jsp");
+                        rd.forward(request, response);
+                    } else {
+                        error = "Registration fails, try again.";
+                    }
+                } catch (Exception e) {
+
                 }
-            }catch(Exception e){
-                
+
+            } else {
+                error="Password do not match.";
             }
-        }else{
-            request.setAttribute("error", "Passwords do not match.");
+        } else {
+            error = "Please enter empty fields.";
+
+        }
+            request.setAttribute("error", error);
             rd = request.getRequestDispatcher("userRegister.jsp");
-            
-            rd.forward(request,response);
-        }
-        
-        response.setContentType("text/html;charset=UTF-8");
-        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(psw1);
-            out.println(psw2);
-            out.println("</body>");
-            out.println("</html>");
-        }
+            rd.forward(request, response);
+
+//        response.setContentType("text/html;charset=UTF-8");
+//        
+//        
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Register</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println(psw1);
+//            out.println(psw2);
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

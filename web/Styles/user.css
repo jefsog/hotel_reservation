@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 31, 2016, 6:05:07 PM
+    Author     : Trisha
+*/
+
+body{
+    color:#fff;
+    background: url(../images/pattern.png), linear-gradient(to left, #485563 , #29323c);
+}  
+
+th, td, tr {
+    border: 3px solid #fff;
+}
+
+.content h2{
+    color: #fff;
+}
+
+.btns{
+    color:#fff;
+    border: 3px solid #fff;
+}
+
+.hvr-sweep-to-left{
+    box-shadow: 1px 5px 6px rgba(255,255,255,0.2);
+}
+
+.frm{
+    border: 3px solid #fff;
+}
+
+.idGroup{
+    margin-bottom: 20px;
+}
+.rmID{
+    font-size: 1.8em;
+}
+.txtGroup{
+    width:250px;
+    height:30px;
+    margin: 10px;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+/* text input placeholder*/
+::-webkit-input-placeholder{
+    opacity: 0.8;
+    color: #fff;
+}
+
+::-moz-input-placeholder{
+    opacity: 0.8;
+    color: #fff;
+}
+
+#ddl{    
+    margin-top: 0%;
+}
+
+#txtSpecialRequests{
+    width: 400px;
+    height: 200px;
+}
+
+#message{
+    color: #de3f42;
+    text-shadow: -1px 1px 1px black;
+    padding: 10px;
+}
+
+h3{
+    font-size: 1.7em;
+}
+
+
+

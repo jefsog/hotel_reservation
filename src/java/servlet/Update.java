@@ -36,10 +36,10 @@ public class Update extends HttpServlet {
         int rID = (int)session.getAttribute("rID");
         //session.removeAttribute("rID");
         
-        String starting = request.getParameter("txtArrivalDate");
-        String ending = request.getParameter("txtDepartureDate");
+        String starting = request.getParameter("txtCheckIn");
+        String ending = request.getParameter("txtCheckOut");
         String rType = request.getParameter("Bed");
-        int rQuantity = Integer.parseInt(request.getParameter("ddlNoOfPeople"));
+        int rQuantity = Integer.parseInt(request.getParameter("ddlNumRooms"));
         String spRequest = request.getParameter("txtSpecialRequests");
         
         try{

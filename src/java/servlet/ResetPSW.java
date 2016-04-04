@@ -32,38 +32,49 @@ public class ResetPSW extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        int cID = (int)session.getAttribute("cID");
-        String psw1 = request.getParameter("password1");
-        String psw2 = request.getParameter("password2");
-        
-        if(psw1.equals(psw2)){
-            try{
-                Database db = Database.getDatabase();
-                db.resetPSW(cID, psw2);
-            }catch(Exception e){
-                
+        int cID = (int) session.getAttribute("cID");
+        String psw1 = request.getParameter("password1").trim();
+        String psw2 = request.getParameter("password2").trim();
+        String error = null;
+        RequestDispatcher rd;
+        if (!psw1.isEmpty() && !psw2.isEmpty()) {
+            if (psw1.equals(psw2)) {
+                try {
+                    Database db = Database.getDatabase();
+                    db.resetPSW(cID, psw2);
+                } catch (Exception e) {
+
+                }
+                rd = request.getRequestDispatcher("userLogin.jsp");
+                rd.forward(request, response);
+            }else{
+                error="Password do not match.";
             }
-            RequestDispatcher rd = request.getRequestDispatcher("userLogin.jsp");
-            rd.forward(request, response);
+        }else{
+            error = "Please enter empty fields.";
         }
         
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ResetPSW</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(cID);
-            out.println(psw1);
-            out.println(psw2);
-            out.println("</body>");
-            out.println("</html>");
-        }
+           request.setAttribute("error", error);
+           rd = request.getRequestDispatcher("userResetPSW.jsp");
+           rd.forward(request, response);
+
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet ResetPSW</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println(cID);
+//            out.println(psw1);
+//            out.println(psw2);
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

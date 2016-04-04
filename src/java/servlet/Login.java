@@ -33,42 +33,63 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd;
-        String usnm = request.getParameter("user_name");
-        String psw = request.getParameter("password");
-        int cID = -1;
-        try{
+        String usnm = request.getParameter("user_name").trim();
+        String psw = request.getParameter("password").trim();
+        String submit = request.getParameter("submit");
+        int cID;
+        String error = null;
+        boolean isValid;
+
+        try {
             Database db = Database.getDatabase();
-            cID = db.getUserID(usnm, psw);
-        }catch(Exception e){
-            
+            if (!usnm.isEmpty() && !psw.isEmpty()) {
+
+                if (submit.equals("Login")) {
+                    isValid = db.validateUser(usnm, psw);
+                    cID = db.getUserID(usnm, psw);
+                    if (isValid) {
+
+//                    if (cID == -1) {
+//                        rd = request.getRequestDispatcher("userRegister.jsp");
+//                        rd.forward(request, response);                   
+                        if (cID == 9999) {
+                            rd = request.getRequestDispatcher("adminViewRooms.jsp");
+                            rd.forward(request, response);
+                        } else {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("cID", cID);
+                            session.setAttribute("username", usnm);
+                            rd = request.getRequestDispatcher("userViewR.jsp");
+                            rd.forward(request, response);
+                        }
+                    }
+                    error = "Invalid username or password";
+
+                }
+            } else {
+                error = "Please enter empty fields.";
+            }
+            request.setAttribute("error", error);
+            rd = request.getRequestDispatcher("userLogin.jsp");
+            rd.forward(request, response);
+        } catch (Exception e) {
         }
-        if(cID == -1){
-            rd = request.getRequestDispatcher("userRegister.jsp");
-            rd.forward(request,response);
-        }else{
-            HttpSession session = request.getSession(); 
-            session.setAttribute("cID", cID);
-            rd = request.getRequestDispatcher("userViewR.jsp");
-            rd.forward(request,response);
-        }
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(psw);
-            out.println(usnm);
-            out.println(cID);
-            out.println("</body>");
-            out.println("</html>");
-        }
-        
-        
-        
+
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Login</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println(psw);
+//            out.println(usnm);
+//            out.println(cID);
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

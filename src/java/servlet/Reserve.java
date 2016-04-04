@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import _db._DB;
 import databaseJeff.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,55 +36,66 @@ public class Reserve extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         int uID = (int) session.getAttribute("cID");
-        String starting = request.getParameter("txtArrivalDate");
-        String ending = request.getParameter("txtDepartureDate");
+        String starting = request.getParameter("txtCheckIn");
+        String ending = request.getParameter("txtCheckOut");
         String rType = request.getParameter("Bed");
-        int rQuantity = Integer.parseInt(request.getParameter("ddlNoOfPeople"));
-        String spRequest = request.getParameter("txtSpecialRequests");
-        int i = -1;
-        int roomAvailability = -1;
-        try{
+        String rQuantity = request.getParameter("ddlNumRooms");
+        String spRequest = request.getParameter("txtSpecialRequests").trim();
+
+        int i = 0;
+        int roomAvailability;
+        String msg = null;
+        try {
             Database db = Database.getDatabase();
             roomAvailability = db.getAvailableRoomQuantity(starting, ending, rType);
-            if(rQuantity <= roomAvailability){
-                i = db.insertReservation(uID, starting, ending, rType, rQuantity, spRequest);
-                
-            }else{
-                //return error information;
-                String error = "From "+starting+ " to "+ending+" , only "+roomAvailability+" "+ rType+"  rooms left.";
-                request.setAttribute("error", error);
-                RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
-                rd.forward(request,response);
+            if (!starting.isEmpty() && !ending.isEmpty() && rQuantity != null) {
+                int rQty = Integer.parseInt(rQuantity);
+                if (rQty <= roomAvailability) {
+                    i = db.insertReservation(uID, starting, ending, rType, rQty, spRequest);
+                    if (rQty > roomAvailability) {
+                        msg = "From " + starting + " to " + ending + "\n"
+                                + rQuantity + " rooms selected. Only " + roomAvailability + " " + rType + " rooms are available.";
+                    }
+                }
+                if (rQty > roomAvailability) {
+                    msg = "From " + starting + " to " + ending + "\n"
+                            + rQuantity + " rooms selected. No available " + rType + " rooms. Please select another room type.";
+                }
+                if (i == 1) {
+                    RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
+                    rd.forward(request, response);
+                }
+            } else {
+                msg = "Please enter empty fields.";
             }
-            if(i == 1){
-            RequestDispatcher rd = request.getRequestDispatcher("userViewR.jsp");
-            rd.forward(request,response);
-            }else{
-                //return error information
-            }
-        }catch(Exception e){
-            
+
+            request.setAttribute("msg", msg);
+            RequestDispatcher rd = request.getRequestDispatcher("userReserve.jsp");
+            rd.forward(request, response);
+
+        } catch (Exception e) {
+
         }
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Reserve</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(uID);
-            out.println(starting);
-            out.println(ending);
-            out.println(rType);
-            out.println(rQuantity);
-            out.println(spRequest);
-            out.println(roomAvailability);
-            out.println(i);
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Reserve</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println(uID);
+//            out.println(starting);
+//            out.println(ending);
+//            out.println(rType);
+//            out.println(rQuantity);
+//            out.println(spRequest);
+//            out.println(roomAvailability);
+//            out.println(i);
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

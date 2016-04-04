@@ -24,6 +24,30 @@
         <servlet-name>ResetPSW</servlet-name>
         <servlet-class>servlet.ResetPSW</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddRoom</servlet-name>
+        <servlet-class>_controller.AddRoom</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewRooms</servlet-name>
+        <servlet-class>_controller.ViewRooms</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewReservations</servlet-name>
+        <servlet-class>_controller.ViewReservations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckAvailable</servlet-name>
+        <servlet-class>_controller.CheckAvailable</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login_Signup</servlet-name>
+        <servlet-class>_controller.Login_Signup</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewReservationList</servlet-name>
+        <servlet-class>_controller.ViewReservationList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -48,9 +72,36 @@
         <servlet-name>ResetPSW</servlet-name>
         <url-pattern>/ResetPSW</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRoom</servlet-name>
+        <url-pattern>/AddRoom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRooms</servlet-name>
+        <url-pattern>/ViewRooms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReservations</servlet-name>
+        <url-pattern>/ViewReservations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckAvailable</servlet-name>
+        <url-pattern>/CheckAvailable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login_Signup</servlet-name>
+        <url-pattern>/Login_Signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReservationList</servlet-name>
+        <url-pattern>/ViewReservationList</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>_home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

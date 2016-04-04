@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 29, 2016, 4:02:52 PM
+    Author     : Trisha
+*/
+/*FONTS*/
+/*body and header h2*/
+@font-face{
+    font-family: 'Fira';
+    src: url(../fonts/FiraSans-Regular.otf) format('opentype');
+}
+
+/*header h1*/
+@font-face{
+    font-family: 'Furgatorio';
+    src: url(../fonts/Furgatorio.ttf) format('truetype');
+}
+
