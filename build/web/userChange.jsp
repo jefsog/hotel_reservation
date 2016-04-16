@@ -28,7 +28,7 @@
         <jsp:include page="userMenu.jsp"/>
 
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Change Reservation-</h2>
+            <h2 class="slideInDown animated">—Change Reservation—</h2>
             <form class="frm" action="Update" method="get">        
                 <%
                     int rID = Integer.parseInt((String) request.getAttribute("rID"));

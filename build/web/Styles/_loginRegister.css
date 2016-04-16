@@ -9,18 +9,18 @@ and open the template in the editor.
 */
 
 body{
-    color:#000;
+    color:#575960;
     background: url(../images/pattern.png), linear-gradient(to left, #EFEFBB , #D4D3DD);
 }
 
 /*default button*/
 .btns{
-    color:#000;
-    font-family: 'Fira', sans-serif;
+    color:#575960;
+    font-family: 'Raleway', sans-serif;
     width: auto;
     height: auto;
     background: transparent;
-    border: 3px solid #000;
+    border: 3px solid #575960;
     font-size: 1.4em;
     padding: 10px 25px 10px 25px;
     margin: 10px;
@@ -40,7 +40,7 @@ body{
 }
 /*content h2*/
 .content h2{
-    color: #000;
+    color: #575960;
     font-size: 2em;
     font-weight: bold;
     letter-spacing: 10px;
@@ -50,8 +50,8 @@ body{
 
 /*form*/
 .frm{
-    border: 3px solid #000;
-    width: 30%;
+    border: 3px solid #575960;
+    width: 31%;
     height: 50%;
     padding: 10px 5px 10px 5px;
     position: relative;
@@ -60,12 +60,12 @@ body{
 
 /*text input style*/
 .txtGroup{
-    font-family: 'Fira', sans-serif;
+    font-family: 'Raleway', sans-serif;
     width: 200px;
     height: 30px;
-    color: #000;
+    color: #575960;
     background: transparent;
-    border: 2px solid #000;
+    border: 2px solid #575960;
     border-radius: 2px;
     font-weight: normal;
     font-size: 1.2em;
@@ -75,12 +75,12 @@ body{
 /* text input placeholder*/
 ::-webkit-input-placeholder{
     opacity: 0.8;
-    color: #000;
+    color: #575960;
 }
 
 ::-moz-input-placeholder{
     opacity: 0.8;
-    color: #000;
+    color: #575960;
 }
 /*form*/
 
@@ -109,7 +109,7 @@ body{
 /*text input animation*/
 .txt  input[type=text]:focus{
     outline: none;
-    border: 1px solid #fff;
+    border: 1px solid #f1f0ed;
 }
 
 /*message*/
@@ -124,7 +124,7 @@ body{
 
 /*footer*/
 #footerGroup{
-    color:#000;
+    color:#575960;
     opacity: .9;
 
 }

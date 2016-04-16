@@ -20,7 +20,7 @@
         <jsp:include page="_menu.jsp"/>
 
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Please enter new credentials-</h2>
+            <h2 class="slideInDown animated">—Please enter new credentials—</h2>
             <div id="message">
                 <% if (request.getAttribute("error") != null) {
                         out.print(request.getAttribute("error"));
@@ -36,7 +36,7 @@
                 %>
                 <div class="txt">
                     <label>Username:</label>
-                    <input class="txtGroup" type="text" name="user_name" value="<%=user_name%>">
+                    <input class="txtGroup" type="text" name="user_name" value="">
                 </div>
 
                 <div class="txt">

@@ -9,14 +9,14 @@ and open the template in the editor.
 */
 
 h3{
-    color: #000;
+    color: #f1f0ed;
     font-weight: normal;
-    font-size: 18em;
+    font-size: 15em;
     position: fixed;
-    transform: rotate(90deg);
-    left: 65%;
-    margin-top: 16%;
-    opacity: .5;
+    transform: rotate(270deg);
+    margin-top: 4%;
+    opacity: 0.2;
+    left: 4%;
 }
 
 .roomGroup {
@@ -29,12 +29,12 @@ h3{
 }
 
 .indivRoom{
-    color: #000;
+ color: #f1f0ed;
     margin: 0 auto;
     margin-bottom: 15px;
     width: 50%;
     height: 200px;
-    border: 4px solid rgba(0,0,0,.5);
+
     border-radius: 2px;
     position: relative;
     padding: 20px;

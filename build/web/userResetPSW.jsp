@@ -21,7 +21,7 @@
         <jsp:include page="userMenu.jsp"/>
 
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Change Password-</h2>
+            <h2 class="slideInDown animated">—Change Password—</h2>
 
             <form class="frm" action="ResetPSW" method="post">
                 <%

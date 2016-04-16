@@ -39,7 +39,7 @@
 
         <!--room list-->
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Rooms-</h2>
+            <h2 class="slideInDown animated">—Rooms—</h2>
             <div class="message">
                 <%
                     if (request.getAttribute("msg") != null) {

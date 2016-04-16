@@ -32,7 +32,7 @@
         %>
 
             <div class="content fadeIn animated">
-                <h2 class="slideInDown animated">-Edit Room-</h2>
+                <h2 class="slideInDown animated">—Edit Room—</h2>
                 <form class="frm" method="GET" name="editForm" action="EditRoom">
                     <div id="roomNum">
                         <h3>Room Number:</h3> 

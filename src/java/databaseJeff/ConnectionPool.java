@@ -43,7 +43,7 @@ public class ConnectionPool {
             Context ctx = new InitialContext();
             //for dilbert
             ds = (DataSource) ctx.lookup("jdbc/dilbert_HotelResDatasource");
-            conn = ds.getConnection("n01039590", "oracle");
+            conn = ds.getConnection("n01039590", "oracle201604");
             stmt = conn.createStatement();
 
         } catch (NamingException | SQLException e) {

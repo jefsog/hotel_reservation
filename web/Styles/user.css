@@ -9,29 +9,29 @@ and open the template in the editor.
 */
 
 body{
-    color:#fff;
+    color:#f1f0ed;
     background: url(../images/pattern.png), linear-gradient(to left, #485563 , #29323c);
 }  
 
 th, td, tr {
-    border: 3px solid #fff;
+    border: 2px solid #f1f0ed;
 }
 
 .content h2{
-    color: #fff;
+    color: #f1f0ed;
 }
 
 .btns{
-    color:#fff;
-    border: 3px solid #fff;
+    color:#f1f0ed;
+    border: 1px solid #f1f0ed;
 }
 
 .hvr-sweep-to-left{
-    box-shadow: 1px 5px 6px rgba(255,255,255,0.2);
+    box-shadow: 1px 5px 6px rgba(87,89,96,0.2);
 }
 
 .frm{
-    border: 3px solid #fff;
+    border: 2px solid #f1f0ed;
 }
 
 .idGroup{
@@ -44,19 +44,19 @@ th, td, tr {
     width:250px;
     height:30px;
     margin: 10px;
-    color: #fff;
-    border: 2px solid #fff;
+    color: #f1f0ed;
+    border: 2px solid #f1f0ed;
 }
 
 /* text input placeholder*/
 ::-webkit-input-placeholder{
     opacity: 0.8;
-    color: #fff;
+    color: #f1f0ed;
 }
 
 ::-moz-input-placeholder{
     opacity: 0.8;
-    color: #fff;
+    color: #f1f0ed;
 }
 
 #ddl{    

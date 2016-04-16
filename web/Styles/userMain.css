@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body{
-    color:#000;
+    color:#575960;
     background: url(../images/pattern.png), linear-gradient(to left, #EFEFBB , #D4D3DD);
 }
 
@@ -28,7 +28,7 @@ table{
 
 th, td, tr {
     font-size: 1.1em;
-    border: 3px solid #000;
+    border: 2px solid #575960;
     padding: 10px 20px 10px 20px;
     border-collapse: separate;
     text-align: center;       
@@ -58,8 +58,8 @@ th, td, tr {
 }
 
 .hvr-sweep-to-left{
-    color: #000;
-    background: #fff;
+    color: #575960;
+    background: #f1f0ed;
     display: block;
     line-height: 50px;
     padding: 0px 20px;
@@ -84,12 +84,12 @@ th, td, tr {
 
 /*default button*/
 .btns{
-    color:#000;
-    font-family: 'Fira', sans-serif;
+    color:#575960;
+    font-family: 'Raleway', sans-serif;
     width: auto;
     height: auto;
     background: transparent;
-    border: 3px solid #000;
+    border: 1px solid #575960;
     font-size: 1.3em;
     padding: 5px 20px 5px 20px;
     margin: 10px;
@@ -118,9 +118,9 @@ th, td, tr {
 }
 /*content h2*/
 .content h2{
-    color: #000;
+    color: #575960;
     font-size: 2.5em;
-    font-weight: bold;
+    font-weight: normal;
     letter-spacing: 10px;
     animation-delay: .1s;
 }
@@ -128,7 +128,7 @@ th, td, tr {
 
 /*form*/
 .frm{
-    border: 3px solid #000;
+    border: 2px solid #575960;
     width: 35%;
     height: 50%;
     padding: 10px 5px 10px 5px;
@@ -138,12 +138,12 @@ th, td, tr {
 
 /*text input style*/
 .txtGroup{
-    font-family: 'Fira', sans-serif;
+    font-family: 'Raleway', sans-serif;
     width: 200px;
     height: 30px;
-    color: #000;
+    color: #575960;
     background: transparent;
-    border: 2px solid #000;
+    border: 2px solid #575960;
     border-radius: 2px;
     font-weight: normal;
     font-size: 1.2em;
@@ -156,12 +156,12 @@ th, td, tr {
 /* text input placeholder*/
 ::-webkit-input-placeholder{
     opacity: 0.8;
-    color: #000;
+    color: #575960;
 }
 
 ::-moz-input-placeholder{
     opacity: 0.8;
-    color: #000;
+    color: #575960;
 }
 
 /*text input style*/
@@ -194,12 +194,12 @@ label {
 }
 
 .ddlGroup{
-    color: #fff;
-    font-family: 'Fira', sans-serif;
+    color: #f1f0ed;
+    font-family: 'Raleway', sans-serif;
     width: 275px;
     height: 50px;
     background: transparent;
-    border: 2px solid #fff;
+    border: 2px solid #f1f0ed;
     border-radius: 2px;
     font-size: 1em;
     padding: 10px;
@@ -207,13 +207,13 @@ label {
 }
 
 .ddlGroup .opt{
-    color: #000;
-    background-color: #fff;
+    color: #575960;
+    background-color: #f1f0ed;
 }
 
 #ddlFilter{
-    color: #000;
-    border: 2px solid #000;
+    color: #575960;
+    border: 2px solid #575960;
     width: 160px;
     height: 45px;
     background: transparent;

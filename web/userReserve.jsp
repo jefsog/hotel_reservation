@@ -26,7 +26,7 @@
         <jsp:include page="userMenu.jsp"/>
 
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Reservation Request-</h2>
+            <h2 class="slideInDown animated">—Reservation Request—</h2>
             <div id="message">
                 <%
                     if (request.getAttribute("msg") != null) {

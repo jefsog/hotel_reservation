@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : Trisha
 */
 
+h3{
+    color: #f1f0ed;
+    font-weight: normal;
+    font-size: 14em;
+    position: fixed;
+    transform: rotate(270deg);
+    margin-top: 0%;
+    opacity: 0.2;
+    left: 1%;
+}
 #gmap_canvas img{
     max-width:none!important;
     background:none!important

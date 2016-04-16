@@ -13,7 +13,7 @@
         <title>Contact Us</title>
         <link rel="stylesheet" href="Styles/_main.css" type="text/css"/>
         <link rel="stylesheet" href="Styles/_menu.css" type="text/css"/>
-        <link rel="stylesheet" href="Styles/_contact.css" type="text/css"/>
+        <link rel="stylesheet" href="Styles/_location.css" type="text/css"/>
         <script src='https://maps.googleapis.com/maps/api/js?v=3.exp' defer></script>
         <script type="text/javascript" src="js/map.js" defer></script>
 
@@ -23,7 +23,7 @@
 
         <!--Navigation-->
         <jsp:include page="_menu.jsp"/>
-
+        <h3>Loca<br/>tion</h3>
         <div id="googleMap">
             <div style='overflow:hidden;height:440px;width:700px;'>
                 <div id='gmap_canvas' style='height:440px;width:700px;'>

@@ -85,7 +85,7 @@
                 </form>
             </div>
             <%}%>
-            <h2 id="h2" class="slideInDown animated">-Reservations-</h2>
+            <h2 id="h2" class="slideInDown animated">—Reservations—</h2>
             <table class="tbl">
                 <thead>
                     <tr>          

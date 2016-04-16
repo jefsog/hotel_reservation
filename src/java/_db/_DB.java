@@ -148,10 +148,11 @@ public class _DB {
     
     private final String orderBy = "ORDER BY res.RSID";
     private ReservationJeff resJ;
+    private String qSel = "";
     
     public ArrayList<ReservationJeff> getReservationList() throws SQLException {
         reservationList = new ArrayList<>();
-        String qSel = qReservList + " " + orderBy;
+        qSel = qReservList + " " + orderBy;
         pstmt = con.prepareStatement(qSel);
         ResultSet rs = pstmt.executeQuery();
         if (rs != null) {
@@ -178,7 +179,7 @@ public class _DB {
     }
 
     public void setReservationListByDate(String starting, String ending) throws SQLException {
-        String qSel = qReservList + " "
+        qSel = qReservList + " "
                 + "WHERE (res.starting >= TO_DATE(?, 'DD-MON-YY') AND res.starting <= TO_DATE(?, 'DD-MON-YY') "
                 + "OR res.ending >= TO_DATE(?, 'DD-MON-YY') AND res.ending <= TO_DATE(?, 'DD-MON-YY')) "
                 + orderBy;
@@ -206,7 +207,7 @@ public class _DB {
     }
 
     public void setReservationListByPrice(double price) throws SQLException {
-        String qSel = qReservList + " "
+        qSel = qReservList + " "
                 + "WHERE rmTyp.PRICE = ? "
                 + orderBy;
         pstmt = con.prepareStatement(qSel);
@@ -242,7 +243,7 @@ public class _DB {
                 lvl = '3';
                 break;
         }
-        String qSel = qReservList + " "
+        qSel = qReservList + " "
                 + "WHERE rm.RID LIKE '" + lvl + "%' "
                 + orderBy;
      

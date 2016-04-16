@@ -9,7 +9,7 @@
     <ul>       
         <li><a href="_home.jsp">Home</a></li>
         <li><a href="_rooms.jsp">Rooms</a></li>
-        <li><a href="_contact.jsp">Location</a></li>
+        <li><a href="_location.jsp">Location</a></li>
         <li><a href="_about.jsp">About Us</a></li>
     </ul>
 </nav>

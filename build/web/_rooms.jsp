@@ -22,7 +22,7 @@
 
         <!--Navigation-->
         <jsp:include page="_menu.jsp"/>             
-        <h3>Rooms</h3>
+        <h3>Ro<br/>om</h3>
         <div class="roomGroup">
             <div class="indivRoom fadeIn animated">
                 <h4 class="fadeInDown animated">King</h4>

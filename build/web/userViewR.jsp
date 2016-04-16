@@ -53,7 +53,7 @@
         %>
 
         <div class="content fadeIn animated">   
-            <h2 class="slideInUp animated">-Reservations-</h2>
+            <h2 class="slideInUp animated">—Reservations—</h2>
             <form method="get" action="Change">
                 <table>
                     <thead>
@@ -106,7 +106,7 @@
 
         <!--History --> 
         <div class="content fadeIn animated">   
-            <h2 class="slideInDown animated">-History-</h2>
+            <h2 class="slideInDown animated">—History—</h2>
             <table>
                 <thead>
                     <tr>

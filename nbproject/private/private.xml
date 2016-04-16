@@ -4,13 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="Design Patterns">
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/adminAddRoom.jsp</file>
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/Room_DB.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_model/Room.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/databaseJeff/ConnectionPool.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/AddRoom.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/_DB.java</file>
         </group>
         <group name="Distributed Computing">
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/databaseJeff/ConnectionPool.java</file>
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/databaseJeff/Database.java</file>
-            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_db/_DB.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/_location.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/Styles/_location.css</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/Styles/_rooms.css</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/_about.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/src/java/_controller/CheckAvailable.java</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/_rooms.jsp</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/Styles/_about.css</file>
+            <file>file:/C:/Users/Trisha/Documents/GitHub/hotel_reservation/web/_home.jsp</file>
         </group>
     </open-files>
 </project-private>

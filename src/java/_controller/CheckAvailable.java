@@ -51,8 +51,7 @@ public class CheckAvailable extends HttpServlet {
                 int qty = Integer.parseInt(q);
                 if (qty <= rmAvail) {
                     msg = "From " + checkIn + " to " + checkOut + ", " + rmAvail + " " + rType + " room/s left.";
-                }
-                if (qty > rmAvail) {
+                } else if (qty > rmAvail) {
                     msg = "Arrival Date: " + checkIn + "<br/>"
                             + "Departure Date: " + checkOut + "<br/>"
                             + "You have selected " + qty + " rooms.<br/>"

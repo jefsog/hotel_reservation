@@ -32,12 +32,12 @@ and open the template in the editor.
 /*text input animation*/
 .txt  input[type=text]:focus{
     outline: none;
-    border: 1px solid #fff;
+    border: 1px solid #f1f0ed;
 }
 
 .btns{
-    color: #fff;
-    border: 3px solid #fff;
+    color: #f1f0ed;
+    border: 3px solid #f1f0ed;
 }
 
 #message{
@@ -46,7 +46,7 @@ and open the template in the editor.
 }
 
 #footerGroup{
-    color:#fff;
+    color:#f1f0ed;
     opacity: .9;
 
 }

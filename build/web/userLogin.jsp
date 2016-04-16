@@ -20,7 +20,7 @@
         <jsp:include page="_menu.jsp"/>
 
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Please enter login credentials-</h2>
+            <h2 class="slideInDown animated">—Please enter login credentials—</h2>
             <div id="message">
                 <% if (request.getAttribute("error") != null) {
                         out.print(request.getAttribute("error"));

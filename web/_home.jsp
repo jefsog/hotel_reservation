@@ -64,7 +64,7 @@
 
         <div class="fadeIn animated" id="checkGroup">   
             <form method="get" action="CheckAvailable">
-                <h3>Check Availability</h3>
+                <h3>—Check Availability—</h3>
                 <ul>
                     <li>
                         <input class="txtGroup" name="txtCheckIn" type="text" id="checkIn" placeholder="Check in"/>
@@ -102,10 +102,13 @@
                 <input type="submit" name="btnCheck" value="Check Availability" class="btn" id="btnCheckAvail"/><br/>  
                 <div id="message">
                     <%
-                        if (request.getAttribute("msg") != null) {
-                            out.print(request.getAttribute("msg"));
-                        }
-                    %>
+                        String msg = (String)request.getAttribute("msg");
+                        if (msg != null) {
+                            out.print(msg);
+                        if(!msg.contains("Please") && !msg.contains("No Available")){
+                        %>                       
+                        <input type="submit" name="btnBook" value="Book Now" class="btn" id="btnBookNow"/><br/>  
+                    <%}}%>
                 </div>
             </form>
         </div>

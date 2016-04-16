@@ -22,7 +22,7 @@
 
         <!--form-->
         <div class="content fadeIn animated">
-            <h2 class="slideInDown animated">-Add Room-</h2>
+            <h2 class="slideInDown animated">—Add Room—</h2>
             <!--message-->
             <div class="message">
                 <%
@@ -40,8 +40,8 @@
                     <input type="radio" name="radRoom" value="King" id="radKing" checked>
                     <label class="lbl">King</label>   
 
-                    <input type="radio" name="radRoom" value="Two Queen" id="radTQueen">
-                    <label class="lbl">Two Queen</label>   
+                    <input type="radio" name="radRoom" value="Two Queens" id="radTQueen">
+                    <label class="lbl">Two Queens</label>   
 
                     <input type="radio" name="radRoom" value="One Queen" id="radOQueen">
                     <label class="lbl">One Queen</label>                     
@@ -49,7 +49,8 @@
 
                 <!--room number-->
                 <div class="txt">
-                    <h3>Room Number:</h3>  
+                    <h3>Room Number:</h3> 
+                    
                     <input type="radio" name="radLevel" value="100" checked>
                     <label class="lbl">1 level</label>
 
@@ -59,7 +60,7 @@
                     <input type="radio" name="radLevel" value="300"  >
                     <label class="lbl">3 level</label>
                     
-                    <input id="rmNum" class="txtGroup" type="number" name="txtRoomNum" min="0" max="20"/><br/> 
+                    &nbsp;<input id="rmNum" class="txtGroup" type="number" name="txtRoomNum" min="0" max="20"/><br/> 
                 </div>
 
                 <!--smoking-->
