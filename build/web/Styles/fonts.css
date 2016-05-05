@@ -10,11 +10,6 @@ and open the template in the editor.
 /*FONTS*/
 /*body and header h2*/
 @font-face{
-    font-family: 'Fira';
-    src: url(../fonts/FiraSans-Regular.otf) format('opentype');
-}
-
-@font-face{
     font-family: 'Raleway';
     src: url(../fonts/Raleway-Regular.ttf) format('truetype');
 }
